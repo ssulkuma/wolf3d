@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/29 15:50:25 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:22:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ typedef struct s_position
 }			t_position;
 
 void	error(const char *str);
+int		key_events(int key_code, t_mlx *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/29 13:25:28 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:22:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->window = mlx_new_window(mlx->connection, WIDTH, HEIGHT, "Wolf3D");
 	if (!mlx->window)
 		error("error");
+	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
+	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
+			&mlx->line_len, &mlx->endian);
 }
 
 void	error(const char *str)
@@ -38,6 +41,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	struct_intel(&mlx);
+	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }
