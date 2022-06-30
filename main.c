@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/29 16:22:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:32:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	}
 	struct_intel(&mlx);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
+	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }
