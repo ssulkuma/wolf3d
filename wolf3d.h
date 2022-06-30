@@ -6,10 +6,9 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/30 11:31:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:20:18 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
@@ -17,6 +16,7 @@
 # include "./minilibx/mlx.h"
 
 # include <stdio.h>
+# include <fcntl.h>
 
 # define WIDTH 800
 # define HEIGHT 600
@@ -38,6 +38,12 @@ typedef struct s_mlx
 	int		endian;
 }			t_mlx;
 
+typedef struct s_map
+{
+	double	width;
+	double	height;
+}			t_map;
+
 typedef struct s_position
 {
 	double	x;
@@ -45,6 +51,9 @@ typedef struct s_position
 }			t_position;
 
 void	error(const char *str);
+void	read_map(char *map, t_mlx *mlx);
 int		key_events(int key_code, t_mlx *mlx);
+int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);
+
 #endif

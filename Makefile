@@ -6,12 +6,13 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/06/30 11:28:46 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/06/30 11:41:51 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 SRC_FILES = main.c \
+			map.c \
 			key_events.c \
 			mouse_events.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))

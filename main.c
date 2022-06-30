@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/30 11:32:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:18:40 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
-	if (argc != 1 && argv)
+	if (argc != 2)
 	{
-		ft_putendl("Usage: ./wolf3d");
+		ft_putendl("Usage: ./wolf3d [map]");
 		return (1);
 	}
+	read_map(argv[1], &mlx);
 	struct_intel(&mlx);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
+	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
