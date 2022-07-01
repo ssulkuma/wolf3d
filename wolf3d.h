@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/06/30 15:20:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:59:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -17,9 +17,11 @@
 
 # include <stdio.h>
 # include <fcntl.h>
+# include <string.h>
 
 # define WIDTH 800
 # define HEIGHT 600
+# define BUFFER_SIZE 10
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -40,8 +42,9 @@ typedef struct s_mlx
 
 typedef struct s_map
 {
-	double	width;
-	double	height;
+	int		width;
+	int		height;
+	int		**matrix;
 }			t_map;
 
 typedef struct s_position
@@ -51,7 +54,7 @@ typedef struct s_position
 }			t_position;
 
 void	error(const char *str);
-void	read_map(char *map, t_mlx *mlx);
+void	read_map(char *map_file, t_map *map);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);
