@@ -6,11 +6,30 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/01 16:36:15 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:04:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void	get_map_size(char **matrix, t_map *map)
+{
+	int	height;
+	int	width;
+
+	map->width = 1;
+	map->height = 0;
+	width = 0;
+	height = 0;
+	while (matrix[height][width] != '\0')
+	{
+		if (matrix[height][width] == ',')
+			map->width++;
+		width++;
+	}
+	while (matrix[map->height])
+		map->height++;
+}
 
 static void	create_matrix(char *saved_map, t_map *map)
 {
@@ -20,17 +39,20 @@ static void	create_matrix(char *saved_map, t_map *map)
 	int		width;
 
 	matrix = ft_strsplit(saved_map, '\n');
-	map->width = 0;
-	map->height = 0;
-	while (matrix[map->width][map->height] != '\0')
-		map->height++;
-	while (matrix[map->width])
-		map->width++;
+	if (!matrix)
+		matrix_error(matrix, saved_map, 0);
+	get_map_size(matrix, map);
 	height = 0;
-	width = 0;
+	map->matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
+	if (!map->matrix)
+		matrix_error(matrix, saved_map, height);
 	while (height < map->height)
 	{
+		map->matrix[height] = (int *)malloc(sizeof(int) * (map->width + 1));
+		if (!map->matrix[height])
+			matrix_error(matrix, saved_map, height);
 		numbers = ft_strsplit(matrix[height], ',');
+		width = 0;
 		while (width < map->width)
 		{
 			map->matrix[height][width] = ft_atoi(numbers[width]);
@@ -44,13 +66,6 @@ static void	create_matrix(char *saved_map, t_map *map)
 	free(numbers);
 }
 
-static void	buff_error(char *saved_map, int file)
-{
-	free(saved_map);
-	close(file);
-	error("error");
-}
-
 static void	read_file(int file, t_map *map)
 {
 	char	*buff;
@@ -59,6 +74,8 @@ static void	read_file(int file, t_map *map)
 	int		read_value;
 
 	saved_map = ft_strnew(1);
+	if (!saved_map)
+		return ;
 	while (1)
 	{
 		buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -71,6 +88,8 @@ static void	read_file(int file, t_map *map)
 		temp = ft_strjoin(saved_map, buff);
 		free(buff);
 		free(saved_map);
+		if (!temp)
+			return ;
 		saved_map = ft_strdup(temp);
 		free(temp);
 	}
@@ -88,4 +107,6 @@ void	read_map(char *map_file, t_map *map)
 		error("error");
 	read_file(file, map);
 	close(file);
+	if (!map->matrix)
+		error("error");
 }

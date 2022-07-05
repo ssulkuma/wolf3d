@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/01 10:34:43 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:28:54 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
-}
-
-void	error(const char *str)
-{
-	perror(str);
-	exit(1);
 }
 
 int	main(int argc, char **argv)
