@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:29 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/05 14:02:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:32:12 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	matrix_error(char **matrix, char *saved_map, int index)
 {
 	while (index > 0)
 		free(matrix[index--]);
-	free(matrix);
-	free(saved_map);
+	if (matrix)
+		free(matrix);
+	if (saved_map)
+		free(saved_map);
 	error("error");
 }
