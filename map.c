@@ -6,11 +6,13 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 11:52:51 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:12:28 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Function to get map width and height.*/
 
 static void	get_map_size(char **matrix, t_map *map)
 {
@@ -30,6 +32,8 @@ static void	get_map_size(char **matrix, t_map *map)
 	while (matrix[map->height])
 		map->height++;
 }
+
+/*Helper function for create_matrix. Converts the char numbers to ints.*/
 
 static void	matrix_help(int height, t_map *map, char *saved_map, char **matrix)
 {
@@ -52,6 +56,10 @@ static void	matrix_help(int height, t_map *map, char *saved_map, char **matrix)
 	free(numbers);
 }
 
+/*Transforms the saved map string first to a 2D char array to get final
+ * matrix size, before allocating enough memory for the 2D int array,
+ * where the map information is stored to be used later on when drawing.*/
+
 static void	create_matrix(char *saved_map, t_map *map)
 {
 	char	**matrix;
@@ -73,6 +81,8 @@ static void	create_matrix(char *saved_map, t_map *map)
 	}
 	free(matrix);
 }
+
+/*Reads from file into the buffer and saves the information to a string.*/
 
 static void	read_file(int file, t_map *map, char *saved_map)
 {
@@ -98,9 +108,13 @@ static void	read_file(int file, t_map *map, char *saved_map)
 		free(temp);
 	}
 	free(buff);
+	saved_map = NULL;
 	create_matrix(saved_map, map);
 	free(saved_map);
 }
+
+/*Opens the map file for reading and creates the string the map will
+ * be saved to.*/
 
 void	read_map(char *map_file, t_map *map)
 {

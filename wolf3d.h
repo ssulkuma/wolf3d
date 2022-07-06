@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/05 14:02:29 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:47:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
+# include <errno.h>
 
 # define WIDTH 800
 # define HEIGHT 600

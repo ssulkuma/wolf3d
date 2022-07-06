@@ -6,11 +6,13 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/05 15:01:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:24:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Initializes the struct variables needed to open a graphic window.*/
 
 static void	struct_intel(t_mlx *mlx)
 {
@@ -24,6 +26,8 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
 }
+
+/*Displays usage message in case of misusage. List of event hooks.*/
 
 int	main(int argc, char **argv)
 {

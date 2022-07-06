@@ -6,11 +6,14 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/05 15:27:36 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:18:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Function to be called when any key down related events are triggered. ESC key
+ * destroys the created image and window, before exiting properly.*/
 
 int	key_events(int keycode, t_mlx *mlx)
 {
