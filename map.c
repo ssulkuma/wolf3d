@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/05 15:27:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:52:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	matrix_help(int height, t_map *map, char *saved_map, char **matrix)
 		free(numbers[width]);
 		width++;
 	}
+	free(numbers);
 }
 
 static void	create_matrix(char *saved_map, t_map *map)
@@ -111,7 +112,10 @@ void	read_map(char *map_file, t_map *map)
 		error("error");
 	saved_map = ft_strnew(1);
 	if (!saved_map)
+	{
+		close(file);
 		error("error");
+	}
 	read_file(file, map, saved_map);
 	close(file);
 }
