@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 13:12:28 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:49:25 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ static void	create_matrix(char *saved_map, t_map *map)
 
 	matrix = ft_strsplit(saved_map, '\n');
 	if (!matrix)
-		matrix_error(matrix, saved_map, 0);
+		matrix_error(matrix, saved_map, -1);
 	get_map_size(matrix, map);
 	map->matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
 	if (!map->matrix)
-		matrix_error(matrix, saved_map, 0);
+		matrix_error(matrix, saved_map, -1);
 	height = 0;
 	while (height < map->height)
 	{
@@ -108,7 +108,6 @@ static void	read_file(int file, t_map *map, char *saved_map)
 		free(temp);
 	}
 	free(buff);
-	saved_map = NULL;
 	create_matrix(saved_map, map);
 	free(saved_map);
 }
@@ -123,12 +122,12 @@ void	read_map(char *map_file, t_map *map)
 
 	file = open(map_file, O_RDONLY);
 	if (file == -1)
-		error("error");
+		error("Error: Unable to open file.");
 	saved_map = ft_strnew(1);
 	if (!saved_map)
 	{
 		close(file);
-		error("error");
+		error("Error: Couldn't get map information.");
 	}
 	read_file(file, map, saved_map);
 	close(file);

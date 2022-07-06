@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:29 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 13:33:48 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:49:03 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	error(const char *str)
 {
-	perror(str);
+	ft_putendl_fd(str, STDERR_FILENO);
 	exit(1);
 }
 
@@ -27,18 +27,18 @@ void	buff_error(char *saved_map, int file)
 {
 	free(saved_map);
 	close(file);
-	ft_putendl("error");
+	error("Error: Couldn't get map information.");
 }
 
 /*Frees all memory allocated before an error occured.*/
 
 void	matrix_error(char **matrix, char *saved_map, int index)
 {
-	while (index > 0)
+	while (index >= 0)
 		free(matrix[index--]);
 	if (matrix)
 		free(matrix);
 	if (saved_map)
 		free(saved_map);
-	error("error");
+	error("Error: Couldn't get map information.");
 }

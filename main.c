@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 13:24:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:46:32 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	struct_intel(t_mlx *mlx)
 {
 	mlx->connection = mlx_init();
 	if (!mlx->connection)
-		error("error");
+		error("Error: Unable to open mlx connection.");
 	mlx->window = mlx_new_window(mlx->connection, WIDTH, HEIGHT, "Wolf3D");
 	if (!mlx->window)
-		error("error");
+		error("Error: Unable create a new window.");
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
