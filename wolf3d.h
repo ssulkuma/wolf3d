@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 13:51:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:46:40 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -59,6 +59,8 @@ void	error(const char *str);
 void	buff_error(char *saved_map, int file);
 void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
+void	check_map_characters(char *saved_map);
+void	check_map_size(char **matrix, t_map *map);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 14:49:25 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:33:01 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	get_map_size(char **matrix, t_map *map)
 	}
 	while (matrix[map->height])
 		map->height++;
+	check_map_size(matrix, map);
 }
 
 /*Helper function for create_matrix. Converts the char numbers to ints.*/
@@ -60,11 +61,13 @@ static void	matrix_help(int height, t_map *map, char *saved_map, char **matrix)
  * matrix size, before allocating enough memory for the 2D int array,
  * where the map information is stored to be used later on when drawing.*/
 
-static void	create_matrix(char *saved_map, t_map *map)
+static void	create_matrix(char *saved_map, t_map *map, int file)
 {
 	char	**matrix;
 	int		height;
 
+	close(file);
+	check_map_characters(saved_map);
 	matrix = ft_strsplit(saved_map, '\n');
 	if (!matrix)
 		matrix_error(matrix, saved_map, -1);
@@ -108,7 +111,7 @@ static void	read_file(int file, t_map *map, char *saved_map)
 		free(temp);
 	}
 	free(buff);
-	create_matrix(saved_map, map);
+	create_matrix(saved_map, map, file);
 	free(saved_map);
 }
 
@@ -130,5 +133,6 @@ void	read_map(char *map_file, t_map *map)
 		error("Error: Couldn't get map information.");
 	}
 	read_file(file, map, saved_map);
-	close(file);
+	if (file)
+		close(file);
 }
