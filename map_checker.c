@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:22:07 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/07 15:42:33 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:09:30 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	check_map_characters(char *saved_map)
 	int		index;
 
 	index = 0;
+	if (saved_map[index] == '\0')
+		error("Error: Invalid map.");
+	if (saved_map[index] < '0' || saved_map[index] > '9')
+		error("Error: Invalid map.");
 	while (saved_map[index] != '\0')
 	{
 		if ((saved_map[index] >= '0' && saved_map[index] <= '9')
@@ -27,7 +31,7 @@ void	check_map_characters(char *saved_map)
 		{
 			if (saved_map[index] == ',')
 			{
-				if (saved_map[index + 1] < '0' && saved_map[index + 1] > '9')
+				if (saved_map[index + 1] < '0' || saved_map[index + 1] > '9')
 					error("Error: Invalid map.");
 			}
 		}
