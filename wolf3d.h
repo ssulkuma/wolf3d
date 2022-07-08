@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/07 15:46:40 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:59:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -19,11 +19,12 @@
 # include <fcntl.h>
 # include <string.h>
 # include <unistd.h>
-# include <errno.h>
+# include <pthread.h>
 
 # define WIDTH 800
 # define HEIGHT 600
 # define BUFFER_SIZE 10
+# define THREADS 10
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -49,6 +50,13 @@ typedef struct s_map
 	int		**matrix;
 }			t_map;
 
+typedef struct s_thread
+{
+	int		start_x;
+	int		end_x;
+	t_mlx	*mlx;
+}			t_thread;
+
 typedef struct s_position
 {
 	double	x;
@@ -61,6 +69,8 @@ void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
+void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
+void	create_threads(t_mlx *mlx);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);

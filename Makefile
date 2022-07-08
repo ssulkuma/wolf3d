@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/07/07 15:34:30 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/07/08 13:41:15 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC_FILES = main.c \
 			map.c \
 			map_checker.c \
 			error.c \
+			draw.c \
 			key_events.c \
 			mouse_events.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
