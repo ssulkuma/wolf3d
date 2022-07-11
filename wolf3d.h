@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/08 13:59:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:42:06 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -48,6 +48,8 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		**matrix;
+	int		x;
+	int		y;
 }			t_map;
 
 typedef struct s_thread
@@ -57,11 +59,20 @@ typedef struct s_thread
 	t_mlx	*mlx;
 }			t_thread;
 
-typedef struct s_position
+typedef struct s_vector
 {
 	double	x;
 	double	y;
-}			t_position;
+}			t_vector;
+
+typedef struct s_ray
+{
+	t_vector	*direction;
+	t_vector	*step;
+	t_vector	*delta;
+	t_vector	*grid;
+	int			wall;
+}			t_ray;
 
 void	error(const char *str);
 void	buff_error(char *saved_map, int file);

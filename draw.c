@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/08 14:01:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:50:21 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,36 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 		pixel = mlx->address + (y * mlx->line_len + \
 			x * (mlx->bits_per_pixel / 8));
 		*(unsigned int *)pixel = color;
+	}
+}
+
+static void	algorithm()
+{
+}
+
+static void	raycasting()
+{
+	t_vector	ray;
+	t_vector	ray_position;
+	double		cam_position;
+	int			x;
+	t_vector	player;
+	t_vector	direction;
+	t_vector	cam_plane;
+
+	player.x = 12;
+	player.y = 12;
+	direction.x = -1;
+	direction.y = 0;
+	cam_plane.x = 0;
+	cam_plane.y = 0.66;
+	x = 0;
+	while (x < WIDTH)
+	{
+		cam_position = 2 * x / WIDTH - 1;
+		ray.x = direction.x + cam_plane.x * cam_position;
+		ray.y = direction.y + cam_plane.y * cam_position;
+		x++;
 	}
 }
 
