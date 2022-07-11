@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/08 17:42:06 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:02:05 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <unistd.h>
+# include <math.h>
 # include <pthread.h>
 
 # define WIDTH 800
@@ -32,6 +33,17 @@
 # define ARROW_DOWN 125
 # define ARROW_UP 126
 
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		**matrix;
+	int		x;
+	int		y;
+	int		wall_start;
+	int		wall_end;
+}			t_map;
+
 typedef struct s_mlx
 {
 	void	*connection;
@@ -41,16 +53,8 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		line_len;
 	int		endian;
+	t_map	*map;
 }			t_mlx;
-
-typedef struct s_map
-{
-	int		width;
-	int		height;
-	int		**matrix;
-	int		x;
-	int		y;
-}			t_map;
 
 typedef struct s_thread
 {
@@ -67,11 +71,14 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	t_vector	*direction;
-	t_vector	*step;
-	t_vector	*delta;
-	t_vector	*grid;
+	t_vector	direction;
+	t_vector	step;
+	t_vector	delta;
+	t_vector	grid;
+	double		length;
 	int			wall;
+	int			wall_side;
+	int			wall_height;
 }			t_ray;
 
 void	error(const char *str);
@@ -81,7 +88,8 @@ void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
-void	create_threads(t_mlx *mlx);
+void	create_threads(t_mlx *mlx, t_map *map);
+void	raycasting(t_mlx *mlx);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);

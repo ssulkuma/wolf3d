@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/08 13:41:45 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:14:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ int	main(int argc, char **argv)
 	}
 	read_map(argv[1], &map);
 	struct_intel(&mlx);
-	create_threads(&mlx);
+	mlx.map = &map;
+	raycasting(&mlx);
+	//create_threads(&mlx, &map);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);

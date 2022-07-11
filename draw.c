@@ -6,11 +6,13 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/08 17:50:21 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:15:24 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Function to color a pixel in an image.*/
 
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 {
@@ -24,35 +26,7 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-static void	algorithm()
-{
-}
-
-static void	raycasting()
-{
-	t_vector	ray;
-	t_vector	ray_position;
-	double		cam_position;
-	int			x;
-	t_vector	player;
-	t_vector	direction;
-	t_vector	cam_plane;
-
-	player.x = 12;
-	player.y = 12;
-	direction.x = -1;
-	direction.y = 0;
-	cam_plane.x = 0;
-	cam_plane.y = 0.66;
-	x = 0;
-	while (x < WIDTH)
-	{
-		cam_position = 2 * x / WIDTH - 1;
-		ray.x = direction.x + cam_plane.x * cam_position;
-		ray.y = direction.y + cam_plane.y * cam_position;
-		x++;
-	}
-}
+/*Iterates through every pixel on the thread.*/
 
 static void	*draw(void *data)
 {
@@ -75,7 +49,11 @@ static void	*draw(void *data)
 	pthread_exit(NULL);
 }
 
-void	create_threads(t_mlx *mlx)
+/*Counts the width for every thread, so that the image will be drawn in
+ * parts. Creates the threads and waits for all of the tasks to be done
+ * the same time, before pushing the image to the window.*/
+
+void	create_threads(t_mlx *mlx, t_map *map)
 {
 	int			index;
 	pthread_t	thread_id[THREADS];
@@ -87,6 +65,7 @@ void	create_threads(t_mlx *mlx)
 		thread[index].start_x = WIDTH / THREADS * index;
 		thread[index].end_x = WIDTH / THREADS * (index + 1);
 		thread[index].mlx = mlx;
+		thread[index].mlx->map = map;
 	}
 	index = -1;
 	while (++index < THREADS)
