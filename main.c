@@ -6,15 +6,16 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/11 14:14:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:51:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*Initializes the struct variables needed to open a graphic window.*/
+/*Initializes the struct variables needed to open a graphic window and the
+ * starting position for player.*/
 
-static void	struct_intel(t_mlx *mlx)
+static void	struct_intel(t_mlx *mlx, t_player *player)
 {
 	mlx->connection = mlx_init();
 	if (!mlx->connection)
@@ -25,14 +26,21 @@ static void	struct_intel(t_mlx *mlx)
 	mlx->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	mlx->address = mlx_get_data_addr(mlx->image, &mlx->bits_per_pixel,
 			&mlx->line_len, &mlx->endian);
+	player->position.x = 12;
+	player->position.y = 12;
+	player->direction.x = -1;
+	player->direction.y = 0;
+	player->cam_plane.x = 0;
+	player->cam_plane.y = 0.66;
 }
 
 /*Displays usage message in case of misusage. List of event hooks.*/
 
 int	main(int argc, char **argv)
 {
-	t_mlx	mlx;
-	t_map	map;
+	t_mlx		mlx;
+	t_map		map;
+	t_player	player;
 
 	if (argc != 2)
 	{
@@ -40,10 +48,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	read_map(argv[1], &map);
-	struct_intel(&mlx);
-	mlx.map = &map;
-	raycasting(&mlx);
-	//create_threads(&mlx, &map);
+	struct_intel(&mlx, &player);
+	//raycasting(&mlx);
+	create_threads(&mlx, &map);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);

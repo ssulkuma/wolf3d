@@ -6,32 +6,37 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/11 15:13:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:59:42 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void raycasting(t_mlx *mlx)
+static void	values(t_vector *player, t_vector *direction, t_vector *cam_plane)
 {
-	int			y;
-	int			x;
+	player->x = 12;
+	player->y = 12;
+	direction->x = -1;
+	direction->y = 0;
+	cam_plane->x = 0;
+	cam_plane->y = 0.66;
+}	
+
+void raycasting(t_mlx *mlx, int x, int y)
+{
+	//int			y;
+	//int			x;
 	double      cam_position;
 	t_vector    player;
 	t_vector    direction;
 	t_vector    cam_plane;
 	t_ray       ray;
 
-	player.x = 12;
-	player.y = 12;
-	direction.x = -1;
-	direction.y = -0.5;
-	cam_plane.x = 0;
-	cam_plane.y = 0.66;
-	x = 0;
-	while (x < WIDTH)
-	{
-		cam_position = 2 * x / (double)WIDTH - 1;
+	values(&player, &direction, &cam_plane);
+	//x = 0;
+	//while (x < WIDTH)
+	//{
+		cam_position = 2.0 * x / (double)WIDTH - 1.0;
 		ray.direction.x = direction.x + cam_plane.x * cam_position;
 		ray.direction.y = direction.y + cam_plane.y * cam_position;
 		mlx->map->x = player.x;
@@ -105,10 +110,17 @@ void raycasting(t_mlx *mlx)
 		y = 0;
 		while (y < ray.wall_height)
 		{
-			draw_pixel_to_image(mlx, x, y, 0x3A243B);
+			if (mlx->map->matrix[mlx->map->x][mlx->map->y] == 1)
+				draw_pixel_to_image(mlx, x, y, 0x3A243B);
+			else if (mlx->map->matrix[mlx->map->x][mlx->map->y] == 2)
+				draw_pixel_to_image(mlx, x, y, 0xD1768F);
+			else if (mlx->map->matrix[mlx->map->x][mlx->map->y] == 3)
+				draw_pixel_to_image(mlx, x, y, 0xED820E);
+			else if (mlx->map->matrix[mlx->map->x][mlx->map->y] == 4)
+				draw_pixel_to_image(mlx, x, y, 0xFFE8E9);
 			y++;
 		}
-		x++;
-	}
-	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
+		//x++;
+	//}
+	//mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
 }

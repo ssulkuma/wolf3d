@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/11 15:02:05 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:52:04 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -35,39 +35,56 @@
 
 typedef struct s_map
 {
-	int		width;
-	int		height;
-	int		**matrix;
-	int		x;
-	int		y;
-	int		wall_start;
-	int		wall_end;
-}			t_map;
-
-typedef struct s_mlx
-{
-	void	*connection;
-	void	*window;
-	void	*image;
-	char	*address;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	t_map	*map;
-}			t_mlx;
-
-typedef struct s_thread
-{
-	int		start_x;
-	int		end_x;
-	t_mlx	*mlx;
-}			t_thread;
+	int			width;
+	int			height;
+	int			**matrix;
+	int			x;
+	int			y;
+	int			wall_start;
+	int			wall_end;
+}				t_map;
 
 typedef struct s_vector
 {
-	double	x;
-	double	y;
-}			t_vector;
+	double		x;
+	double		y;
+}				t_vector;
+
+typedef struct s_player
+{
+	t_vector	position;
+	t_vector	direction;
+	t_vector	cam_plane;
+}				t_player;
+
+typedef struct s_mlx
+{
+	void		*connection;
+	void		*window;
+	void		*image;
+	char		*address;
+	int			bits_per_pixel;
+	int			line_len;
+	int			endian;
+	t_map		*map;
+	t_player	*player;
+}				t_mlx;
+
+typedef struct s_thread
+{
+	int			start_x;
+	int			end_x;
+	t_mlx		*mlx;
+}				t_thread;
+
+typedef struct s_wall
+{
+	int			hit;
+	int			side;
+	int			height;
+	int			start;
+	int			end;
+}				t_wall;
 
 typedef struct s_ray
 {
@@ -79,7 +96,16 @@ typedef struct s_ray
 	int			wall;
 	int			wall_side;
 	int			wall_height;
-}			t_ray;
+	t_wall		wal;
+}				t_ray;
+
+typedef struct s_data
+{
+	t_mlx		*mlx;
+	t_map		*map;
+	t_player	*player;
+	t_thread	*thread;
+}				t_data;
 
 void	error(const char *str);
 void	buff_error(char *saved_map, int file);
@@ -89,7 +115,7 @@ void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map);
-void	raycasting(t_mlx *mlx);
+void	raycasting(t_mlx *mlx, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);
