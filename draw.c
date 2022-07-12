@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/12 15:19:21 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:59:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ static void	*draw(void *data)
 	{
 		y = 0;
 		raycasting(thread, x, y);
-		/*while (y < HEIGHT)
-		{
-			draw_pixel_to_image(thread->mlx, x, y, 0x3A243B);
-			y++;
-		}*/
 		x++;
 	}
 	pthread_exit(NULL);

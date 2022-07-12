@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/12 15:33:14 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:00:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -91,10 +91,10 @@ typedef struct s_ray
 	t_vector	delta;
 	t_vector	grid;
 	double		length;
-	int			wall;
+	int			walli;
 	int			wall_side;
 	int			wall_height;
-	t_wall		wal;
+	t_wall		wall;
 }				t_ray;
 
 typedef struct s_data
