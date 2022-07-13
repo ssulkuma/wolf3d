@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/12 16:00:10 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:28:17 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -38,8 +38,6 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			**matrix;
-	int			wall_start;
-	int			wall_end;
 }				t_map;
 
 typedef struct s_vector
@@ -72,7 +70,6 @@ typedef struct s_thread
 {
 	int			start_x;
 	int			end_x;
-	t_mlx		*mlx;
 }				t_thread;
 
 typedef struct s_wall
@@ -90,11 +87,10 @@ typedef struct s_ray
 	t_vector	step;
 	t_vector	delta;
 	t_vector	grid;
-	double		length;
-	int			walli;
-	int			wall_side;
-	int			wall_height;
 	t_wall		wall;
+	double		length;
+	int			map_x;
+	int			map_y;
 }				t_ray;
 
 typedef struct s_data
@@ -115,7 +111,7 @@ void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
-void	raycasting(t_data *mlx, int x, int y);
+void	raycasting(t_data *mlx, int x);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);
