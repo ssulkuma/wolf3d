@@ -6,15 +6,68 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/15 13:52:24 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/15 15:21:01 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*Key event to move backwards inside the map.*/
+/*Key event to rotate the view right. Both player direction and camera plane
+ * must be moved in union.*/
 
-static void	backward_movement_key(t_mlx *mlx)
+static void	rotate_right(t_mlx *mlx)
+{
+	double	previous_direction_x;
+	double	previous_cam_plane_x;
+
+	previous_direction_x = mlx->player->direction.x;
+	mlx->player->direction.x = mlx->player->direction.x
+		* cos(-mlx->player->turn_speed) - mlx->player->direction.y
+		* sin(-mlx->player->turn_speed);
+	mlx->player->direction.y = previous_direction_x
+		* sin(-mlx->player->turn_speed) + mlx->player->direction.y
+		* cos(-mlx->player->turn_speed);
+	previous_cam_plane_x = mlx->player->cam_plane.x;
+	mlx->player->cam_plane.x = mlx->player->cam_plane.x
+		* cos(-mlx->player->turn_speed) - mlx->player->cam_plane.y
+		* sin(-mlx->player->turn_speed);
+	mlx->player->cam_plane.y = previous_cam_plane_x
+		* sin(-mlx->player->turn_speed) + mlx->player->cam_plane.y
+		* cos(-mlx->player->turn_speed);
+	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	create_threads(mlx, mlx->map, mlx->player);
+}
+
+/*Key event to rotate the view left. Both player direction and camera plane
+ * must be moved in union.*/
+
+static void	rotate_left(t_mlx *mlx)
+{
+	double	previous_direction_x;
+	double	previous_cam_plane_x;
+
+	previous_direction_x = mlx->player->direction.x;
+	mlx->player->direction.x = mlx->player->direction.x
+		* cos(mlx->player->turn_speed) - mlx->player->direction.y
+		* sin(mlx->player->turn_speed);
+	mlx->player->direction.y = previous_direction_x
+		* sin(mlx->player->turn_speed) + mlx->player->direction.y
+		* cos(mlx->player->turn_speed);
+	previous_cam_plane_x = mlx->player->cam_plane.x;
+	mlx->player->cam_plane.x = mlx->player->cam_plane.x
+		* cos(mlx->player->turn_speed) - mlx->player->cam_plane.y
+		* sin(mlx->player->turn_speed);
+	mlx->player->cam_plane.y = previous_cam_plane_x
+		* sin(mlx->player->turn_speed) + mlx->player->cam_plane.y
+		* cos(mlx->player->turn_speed);
+	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	create_threads(mlx, mlx->map, mlx->player);
+}
+
+/*Key event to move backwards inside the map. Calculates the next x and y
+ * position on the map based on the direction the player is heading.*/
+
+static void	move_backwards(t_mlx *mlx)
 {
 	int		next_backward_x;
 	int		next_backward_y;
@@ -33,17 +86,18 @@ static void	backward_movement_key(t_mlx *mlx)
 	create_threads(mlx, mlx->map, mlx->player);
 }
 
-/*Key event to move forward inside the map.*/
+/*Key event to move forward inside the map. Calculates the next x and y
+ * position on the map based on the direction the player is heading.*/
 
-static void	forward_movement_key(t_mlx *mlx)
+static void	move_forward(t_mlx *mlx)
 {
 	int		next_forward_x;
 	int		next_forward_y;
 
-	next_forward_x = (int)(mlx->player->move_speed * mlx->player->direction.x
-			+ mlx->player->position.x);
-	next_forward_y = (int)(mlx->player->move_speed * mlx->player->direction.y
-			+ mlx->player->position.y);
+	next_forward_x = (int)(mlx->player->position.x + mlx->player->direction.x
+			* mlx->player->move_speed);
+	next_forward_y = (int)(mlx->player->position.y + mlx->player->direction.y
+			* mlx->player->move_speed);
 	if (!mlx->map->matrix[next_forward_x][(int)mlx->player->position.y])
 		mlx->player->position.x += mlx->player->direction.x
 			* mlx->player->move_speed;
@@ -65,9 +119,13 @@ int	key_events(int keycode, t_mlx *mlx)
 		mlx_destroy_window(mlx->connection, mlx->window);
 		exit(0);
 	}
+	if (keycode == ARROW_RIGHT)
+		rotate_right(mlx);
+	if (keycode == ARROW_LEFT)
+		rotate_left(mlx);
 	if (keycode == ARROW_DOWN)
-		backward_movement_key(mlx);
+		move_backwards(mlx);
 	if (keycode == ARROW_UP)
-		forward_movement_key(mlx);
+		move_forward(mlx);
 	return (0);
 }
