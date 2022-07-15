@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/13 13:36:16 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:02:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ static void	struct_intel(t_mlx *mlx, t_player *player)
 			&mlx->line_len, &mlx->endian);
 	player->position.x = 12;
 	player->position.y = 12;
-	player->direction.x = -1;
-	player->direction.y = 0;
+	player->direction.x = -0.5;
+	player->direction.y = 1;
 	player->cam_plane.x = 0;
 	player->cam_plane.y = 0.66;
+	player->move_speed = 0.1;
+	player->turn_speed = 0.1;
 }
 
 /*Displays usage message in case of misusage. List of event hooks.*/
@@ -50,6 +52,8 @@ int	main(int argc, char **argv)
 	read_map(argv[1], &map);
 	struct_intel(&mlx, &player);
 	create_threads(&mlx, &map, &player);
+	mlx.map = &map;
+	mlx.player = &player;
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);

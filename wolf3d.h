@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/13 12:28:17 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:01:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -51,6 +51,8 @@ typedef struct s_player
 	t_vector	position;
 	t_vector	direction;
 	t_vector	cam_plane;
+	double		move_speed;
+	double		turn_speed;
 }				t_player;
 
 typedef struct s_mlx
@@ -65,12 +67,6 @@ typedef struct s_mlx
 	t_map		*map;
 	t_player	*player;
 }				t_mlx;
-
-typedef struct s_thread
-{
-	int			start_x;
-	int			end_x;
-}				t_thread;
 
 typedef struct s_wall
 {
@@ -100,7 +96,6 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
-	t_thread	*thread;
 }				t_data;
 
 void	error(const char *str);
