@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/15 14:56:36 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:14:25 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	struct_intel(t_mlx *mlx, t_player *player)
 			&mlx->line_len, &mlx->endian);
 	player->position.x = 12;
 	player->position.y = 12;
-	player->direction.x = -0.5;
-	player->direction.y = 1;
+	player->direction.x = -1;
+	player->direction.y = 0;
 	player->cam_plane.x = 0;
 	player->cam_plane.y = 0.66;
-	player->move_speed = 0.1;
+	player->move_speed = 0.3;
 	player->turn_speed = 0.1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/15 10:15:55 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:17:40 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,6 @@ void	raycasting(t_data *data, int x)
 		+ data->player->cam_plane.y * cam_position;
 	ray.map_x = data->player->position.x;
 	ray.map_y = data->player->position.y;
-	if (ray.direction.x == 0)
-		ray.direction.x = 1e30;
-	if (ray.direction.y == 0)
-		ray.direction.y = 1e30;
 	ray_steps(data, &ray);
 	dda_algorithm(data, &ray);
 	wall_heights(&ray);
