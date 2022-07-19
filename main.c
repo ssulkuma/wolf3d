@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/18 11:14:25 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:36:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv)
 	t_mlx		mlx;
 	t_map		map;
 	t_player	player;
+	//t_texture	texture[MAX_TEXTURES];
 
 	if (argc != 2)
 	{
@@ -52,6 +53,7 @@ int	main(int argc, char **argv)
 	read_map(argv[1], &map);
 	struct_intel(&mlx, &player);
 	create_threads(&mlx, &map, &player);
+	get_textures(&mlx);
 	mlx.map = &map;
 	mlx.player = &player;
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);

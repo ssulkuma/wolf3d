@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/18 11:18:03 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:45:07 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -23,9 +23,13 @@
 # include <pthread.h>
 
 # define WIDTH 800
-# define HEIGHT 600
+# define HEIGHT 640
 # define BUFFER_SIZE 10
 # define THREADS 10
+
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define MAX_TEXTURES 1 
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -89,6 +93,15 @@ typedef struct s_ray
 	int			map_y;
 }				t_ray;
 
+typedef struct s_texture
+{
+	void		*image;
+	char		*address;
+	int			bits_per_pixel;
+	int			line_len;
+	int			endian;
+}				t_texture;
+
 typedef struct s_data
 {
 	int			start_x;
@@ -104,6 +117,7 @@ void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
+void	get_textures(t_mlx *mlx);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
 void	raycasting(t_data *mlx, int x);

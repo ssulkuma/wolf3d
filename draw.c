@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/15 11:31:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:54:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,41 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 			x * (mlx->bits_per_pixel / 8));
 		*(unsigned int *)pixel = color;
 	}
+}
+
+int	get_pixel_from_image(t_mlx *mlx, int x, int y)
+{
+	char	*pixel;
+
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	{
+		pixel = mlx->address + (y * mlx->line_len + \
+			x * (mlx->bits_per_pixel / 8));
+		return (*(unsigned int *)pixel);
+	}
+	return (0);
+}
+
+/**/
+
+void	get_textures(t_mlx *mlx)
+{
+	t_texture	texture[MAX_TEXTURES];
+	int			index;
+	int			x;
+	int			y;
+
+	index = 0;
+	x = 512;
+	y = 64;
+	while (index < MAX_TEXTURES)
+	{
+		texture[index].image = mlx_xpm_file_to_image(&texture[index], "./textures/wolftextures.xpm", &x, &y);
+		texture[index].address = mlx_get_data_addr(texture[index].image, 
+				&texture[index].bits_per_pixel, &texture[index].line_len, &texture[index].endian);
+		index++;
+	}
+	mlx_put_image_to_window(mlx->connection, mlx->window, texture[0].image, 0, 0);
 }
 
 /*Iterates through every pixel on the thread.*/
