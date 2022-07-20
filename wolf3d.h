@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/20 11:10:46 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:18:24 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -25,11 +25,15 @@
 # define WIDTH 800
 # define HEIGHT 640
 # define BUFFER_SIZE 10
-# define THREADS 10
+# define THREADS 1
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define MAX_TEXTURES 1 
+# define MAX_TEXTURES 4
+# define TEX_0 "./textures/0.xpm"
+# define TEX_1 "./textures/1.xpm"
+# define TEX_2 "./textures/2.xpm"
+# define TEX_3 "./textures/3.xpm"
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -94,6 +98,7 @@ typedef struct s_ray
 	t_vector	grid;
 	t_wall		wall;
 	double		length;
+	double		hit;
 	int			map_x;
 	int			map_y;
 }				t_ray;
@@ -105,7 +110,6 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
-	t_image		*image;
 }				t_data;
 
 void	error(const char *str);
@@ -114,10 +118,10 @@ void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
-void	get_textures(t_mlx *mlx);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
-void	raycasting(t_data *mlx, int x);
+void	raycasting(t_data *mlx, int x, t_image *texture);
+int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);

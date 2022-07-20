@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/20 11:17:58 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:30:37 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	dda_algorithm(t_data *data, t_ray *ray)
 
 /*Determines the wall height for every x-coordinate.*/
 
-static void	wall_heights(t_ray *ray)
+static void	wall_heights(t_ray *ray, t_data *data)
 {
 	ray->wall.height = (int)(HEIGHT / ray->length);
 	ray->wall.start = -ray->wall.height / 2 + HEIGHT / 2;
@@ -87,25 +87,45 @@ static void	wall_heights(t_ray *ray)
 	ray->wall.end = ray->wall.height / 2 + HEIGHT / 2;
 	if (ray->wall.end >= HEIGHT)
 		ray->wall.end = HEIGHT - 1;
+	if (ray->wall.side == 0)
+		ray->hit = data->player->position.y + ray->length * ray->direction.y;
+	else
+		ray->hit = data->player->position.x + ray->length * ray->direction.x;
+	ray->hit -= floor(ray->hit);
 }
 
 /*Draws the walls by looping through wall height.*/
 
-static void	draw_walls(t_data *data, t_ray *ray, int x)
+static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 {
 	int			y;
+	int			color;
+	double		step;
+	double		tex_y;
+	double		tex_x;
 
 	y = ray->wall.start;
+	step = 1.0 * TEX_HEIGHT / ray->wall.height;
+	tex_y = 0;
+	tex_x = (int)(ray->hit * TEX_WIDTH);
+	if (ray->wall. side == 0 && ray->direction.x > 0)
+		tex_x = TEX_WIDTH - tex_x - 1;
+	if (ray->wall. side == 1 && ray->direction.y < 0)
+		tex_x = TEX_WIDTH - tex_x - 1;
 	while (y < ray->wall.end)
 	{
 		if (data->map->matrix[ray->map_x][ray->map_y] == 1)
-			draw_pixel_to_image(data->mlx, x, y, 0x3A243B);
+		{
+			color = get_pixel_from_image(&texture[1], tex_x, tex_y);
+			draw_pixel_to_image(data->mlx, x, y, color);
+		}
 		else if (data->map->matrix[ray->map_x][ray->map_y] == 2)
 			draw_pixel_to_image(data->mlx, x, y, 0xD1768F);
 		else if (data->map->matrix[ray->map_x][ray->map_y] == 3)
 			draw_pixel_to_image(data->mlx, x, y, 0xED820E);
 		else if (data->map->matrix[ray->map_x][ray->map_y] == 4)
 			draw_pixel_to_image(data->mlx, x, y, 0xFFE8E9);
+		tex_y += step;
 		y++;
 	}
 }
@@ -115,7 +135,7 @@ of the screen we're at on the x-axis. -1 is the left side, 0 center and 1
 is the right side. Knowing this we can calculate the direction where the
 ray is being cast.*/
 
-void	raycasting(t_data *data, int x)
+void	raycasting(t_data *data, int x, t_image *texture)
 {
 	double		cam_position;
 	t_ray		ray;
@@ -129,7 +149,7 @@ void	raycasting(t_data *data, int x)
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);
 	dda_algorithm(data, &ray);
-	wall_heights(&ray);
+	wall_heights(&ray, data);
 	printf("X %d\n", x);
 	printf("CAM POS %f\n", cam_position);
 	printf("RAY DIR X %f\n", ray.direction.x);
@@ -141,5 +161,5 @@ void	raycasting(t_data *data, int x)
 	printf("RAY LENGHT %f\n", ray.length);
 	printf("RAY WALL HEIGHT %d\n", ray.wall.height);
 	printf("\n");
-	draw_walls(data, &ray, x);
+	draw_walls(data, &ray, x, texture);
 }
