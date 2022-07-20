@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:03:59 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 13:16:45 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:16:44 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	close_window_event(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->connection, mlx->image);
+	mlx_destroy_image(mlx->connection, mlx->image->image);
 	mlx_destroy_window(mlx->connection, mlx->window);
 	exit(0);
 }

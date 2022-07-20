@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/19 14:45:07 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:10:46 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -59,15 +59,20 @@ typedef struct s_player
 	double		turn_speed;
 }				t_player;
 
-typedef struct s_mlx
+typedef struct s_image
 {
-	void		*connection;
-	void		*window;
 	void		*image;
 	char		*address;
 	int			bits_per_pixel;
 	int			line_len;
 	int			endian;
+}				t_image;
+
+typedef struct s_mlx
+{
+	void		*connection;
+	void		*window;
+	t_image		*image;
 	t_map		*map;
 	t_player	*player;
 }				t_mlx;
@@ -93,15 +98,6 @@ typedef struct s_ray
 	int			map_y;
 }				t_ray;
 
-typedef struct s_texture
-{
-	void		*image;
-	char		*address;
-	int			bits_per_pixel;
-	int			line_len;
-	int			endian;
-}				t_texture;
-
 typedef struct s_data
 {
 	int			start_x;
@@ -109,6 +105,7 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
+	t_image		*image;
 }				t_data;
 
 void	error(const char *str);

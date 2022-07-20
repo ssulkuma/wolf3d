@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/15 15:21:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:16:28 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	rotate_right(t_mlx *mlx)
 	mlx->player->cam_plane.y = previous_cam_plane_x
 		* sin(-mlx->player->turn_speed) + mlx->player->cam_plane.y
 		* cos(-mlx->player->turn_speed);
-	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
 	create_threads(mlx, mlx->map, mlx->player);
 }
 
@@ -60,7 +60,7 @@ static void	rotate_left(t_mlx *mlx)
 	mlx->player->cam_plane.y = previous_cam_plane_x
 		* sin(mlx->player->turn_speed) + mlx->player->cam_plane.y
 		* cos(mlx->player->turn_speed);
-	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
 	create_threads(mlx, mlx->map, mlx->player);
 }
 
@@ -82,7 +82,7 @@ static void	move_backwards(t_mlx *mlx)
 	if (!mlx->map->matrix[(int)mlx->player->position.x][next_backward_y])
 		mlx->player->position.y -= mlx->player->direction.y
 			* mlx->player->move_speed;
-	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
 	create_threads(mlx, mlx->map, mlx->player);
 }
 
@@ -104,7 +104,7 @@ static void	move_forward(t_mlx *mlx)
 	if (!mlx->map->matrix[(int)mlx->player->position.x][next_forward_y])
 		mlx->player->position.y += mlx->player->direction.y
 			* mlx->player->move_speed;
-	ft_bzero(mlx->address, (WIDTH * HEIGHT * 4));
+	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
 	create_threads(mlx, mlx->map, mlx->player);
 }
 
@@ -115,7 +115,7 @@ int	key_events(int keycode, t_mlx *mlx)
 {
 	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_image(mlx->connection, mlx->image);
+		mlx_destroy_image(mlx->connection, mlx->image->image);
 		mlx_destroy_window(mlx->connection, mlx->window);
 		exit(0);
 	}

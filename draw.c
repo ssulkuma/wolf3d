@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/19 15:54:11 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:15:42 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		pixel = mlx->address + (y * mlx->line_len + \
-			x * (mlx->bits_per_pixel / 8));
+		pixel = mlx->image->address + (y * mlx->image->line_len + \
+			x * (mlx->image->bits_per_pixel / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
@@ -32,8 +32,8 @@ int	get_pixel_from_image(t_mlx *mlx, int x, int y)
 
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		pixel = mlx->address + (y * mlx->line_len + \
-			x * (mlx->bits_per_pixel / 8));
+		pixel = mlx->image->address + (y * mlx->image->line_len + \
+			x * (mlx->image->bits_per_pixel / 8));
 		return (*(unsigned int *)pixel);
 	}
 	return (0);
@@ -43,7 +43,7 @@ int	get_pixel_from_image(t_mlx *mlx, int x, int y)
 
 void	get_textures(t_mlx *mlx)
 {
-	t_texture	texture[MAX_TEXTURES];
+	t_image		texture[MAX_TEXTURES];
 	int			index;
 	int			x;
 	int			y;
@@ -105,5 +105,5 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player)
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
-	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image, 0, 0);
+	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image->image, 0, 0);
 }
