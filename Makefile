@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/07/11 13:38:39 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/07/21 15:39:47 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_FILES = main.c \
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 INCLUDES = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
-FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror -O3
 FRAMEWORK = -framework OpenGL -framework AppKit
 HEADER = wolf3d.h
 
