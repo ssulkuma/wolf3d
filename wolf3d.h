@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/20 15:18:24 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:41:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -25,7 +25,7 @@
 # define WIDTH 800
 # define HEIGHT 640
 # define BUFFER_SIZE 10
-# define THREADS 1
+# define THREADS 10
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/20 14:36:54 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:23:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,9 @@ int	get_pixel_from_image(t_image *texture, int x, int y)
 {
 	char	*pixel;
 
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-	{
-		pixel = texture->address + (y * texture->line_len + \
-			x * (texture->bits_per_pixel / 8));
-		return (*(unsigned int *)pixel);
-	}
-	return (0);
+	pixel = texture->address + (y * texture->line_len + \
+		x * (texture->bits_per_pixel / 8));
+	return (*(unsigned int *)pixel);
 }
 
 static void	get_textures(t_image *texture)

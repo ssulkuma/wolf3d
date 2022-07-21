@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/20 15:30:37 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:38:45 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,7 @@ static void	wall_heights(t_ray *ray, t_data *data)
 {
 	ray->wall.height = (int)(HEIGHT / ray->length);
 	ray->wall.start = -ray->wall.height / 2 + HEIGHT / 2;
-	if (ray->wall.start < 0)
-		ray->wall.start = 0;
 	ray->wall.end = ray->wall.height / 2 + HEIGHT / 2;
-	if (ray->wall.end >= HEIGHT)
-		ray->wall.end = HEIGHT - 1;
 	if (ray->wall.side == 0)
 		ray->hit = data->player->position.y + ray->length * ray->direction.y;
 	else
@@ -116,7 +112,7 @@ static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 	{
 		if (data->map->matrix[ray->map_x][ray->map_y] == 1)
 		{
-			color = get_pixel_from_image(&texture[1], tex_x, tex_y);
+			color = get_pixel_from_image(&texture[0], tex_x, tex_y);
 			draw_pixel_to_image(data->mlx, x, y, color);
 		}
 		else if (data->map->matrix[ray->map_x][ray->map_y] == 2)
