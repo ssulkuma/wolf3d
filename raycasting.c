@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 10:38:45 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:31:28 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,37 @@ static void	dda_algorithm(t_data *data, t_ray *ray)
 		{
 			ray->grid.x += ray->delta.x;
 			ray->map_x += ray->step.x;
-			ray->wall.side = 0;
+			if (data->player->position.x > ray->map_x)
+				ray->wall.side = 0;
+			else
+				ray->wall.side = 1;
 		}
 		else
 		{
 			ray->grid.y += ray->delta.y;
 			ray->map_y += ray->step.y;
-			ray->wall.side = 1;
+			if (data->player->position.y > ray->map_y)
+				ray->wall.side = 2;
+			else
+				ray->wall.side = 3;
 		}
 		if (data->map->matrix[ray->map_x][ray->map_y] > 0)
 			ray->wall.hit = 1;
 	}
-	if (ray->wall.side == 0)
-		ray->length = ray->grid.x - ray->delta.x;
-	else
-		ray->length = ray->grid.y - ray->delta.y;
 }
 
 /*Determines the wall height for every x-coordinate.*/
 
 static void	wall_heights(t_ray *ray, t_data *data)
 {
+	if (ray->wall.side == 0 || ray->wall.side == 1)
+		ray->length = ray->grid.x - ray->delta.x;
+	else
+		ray->length = ray->grid.y - ray->delta.y;
 	ray->wall.height = (int)(HEIGHT / ray->length);
 	ray->wall.start = -ray->wall.height / 2 + HEIGHT / 2;
 	ray->wall.end = ray->wall.height / 2 + HEIGHT / 2;
-	if (ray->wall.side == 0)
+	if (ray->wall.side == 0 || ray->wall.side == 1)
 		ray->hit = data->player->position.y + ray->length * ray->direction.y;
 	else
 		ray->hit = data->player->position.x + ray->length * ray->direction.x;
@@ -100,27 +106,18 @@ static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 	double		tex_y;
 	double		tex_x;
 
-	y = ray->wall.start;
 	step = 1.0 * TEX_HEIGHT / ray->wall.height;
 	tex_y = 0;
 	tex_x = (int)(ray->hit * TEX_WIDTH);
-	if (ray->wall. side == 0 && ray->direction.x > 0)
+	if ((ray->wall.side == 0 || ray->wall.side == 1) && ray->direction.x > 0)
 		tex_x = TEX_WIDTH - tex_x - 1;
-	if (ray->wall. side == 1 && ray->direction.y < 0)
+	if ((ray->wall.side == 2 || ray->wall.side == 3) && ray->direction.y < 0)
 		tex_x = TEX_WIDTH - tex_x - 1;
+	y = ray->wall.start;
 	while (y < ray->wall.end)
 	{
-		if (data->map->matrix[ray->map_x][ray->map_y] == 1)
-		{
-			color = get_pixel_from_image(&texture[0], tex_x, tex_y);
-			draw_pixel_to_image(data->mlx, x, y, color);
-		}
-		else if (data->map->matrix[ray->map_x][ray->map_y] == 2)
-			draw_pixel_to_image(data->mlx, x, y, 0xD1768F);
-		else if (data->map->matrix[ray->map_x][ray->map_y] == 3)
-			draw_pixel_to_image(data->mlx, x, y, 0xED820E);
-		else if (data->map->matrix[ray->map_x][ray->map_y] == 4)
-			draw_pixel_to_image(data->mlx, x, y, 0xFFE8E9);
+		color = get_pixel_from_image(&texture[ray->wall.side], tex_x, tex_y);
+		draw_pixel_to_image(data->mlx, x, y, color);
 		tex_y += step;
 		y++;
 	}
