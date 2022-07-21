@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 10:41:49 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:43:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -68,7 +68,7 @@ typedef struct s_image
 	void		*image;
 	char		*address;
 	int			bits_per_pixel;
-	int			line_len;
+	int			len;
 	int			endian;
 }				t_image;
 

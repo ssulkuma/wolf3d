@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 13:31:28 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:12:41 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	ray_steps(t_data *data, t_ray *ray)
 
 /*The digital differential analysis algorithm to calculate if there's a hit
 to a wall in grid. Checks for every grid line on ray's way so the calculations
-are minimized wihtout going past a possible wall. Calculates the full length of
-the ray in the end.*/
+are minimized without going past a possible wall. Calculates which compass
+point on of a wall block we've hit.*/
 
 static void	dda_algorithm(t_data *data, t_ray *ray)
 {
@@ -78,7 +78,9 @@ static void	dda_algorithm(t_data *data, t_ray *ray)
 	}
 }
 
-/*Determines the wall height for every x-coordinate.*/
+/*Calculates the perpendicular distance instead the Euclidean distance of the
+ * ray hit to get rid of the fisheye effect. Determines the wall height for
+ * every x-coordinate and the position the ray hit the wall.*/
 
 static void	wall_heights(t_ray *ray, t_data *data)
 {
@@ -96,7 +98,8 @@ static void	wall_heights(t_ray *ray, t_data *data)
 	ray->hit -= floor(ray->hit);
 }
 
-/*Draws the walls by looping through wall height.*/
+/*Calculates the scale of the texture needs to be drawn in and loops through
+ * the wall height of the y-axis.*/
 
 static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 {

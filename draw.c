@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 10:23:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:51:27 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,24 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color)
 
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		pixel = mlx->image->address + (y * mlx->image->line_len + \
+		pixel = mlx->image->address + (y * mlx->image->len + \
 			x * (mlx->image->bits_per_pixel / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
 
+/*Function to get the color value from a specific coordinate of an image.*/
+
 int	get_pixel_from_image(t_image *texture, int x, int y)
 {
 	char	*pixel;
 
-	pixel = texture->address + (y * texture->line_len + \
+	pixel = texture->address + (y * texture->len + \
 		x * (texture->bits_per_pixel / 8));
 	return (*(unsigned int *)pixel);
 }
+
+/*Saves the texture information to an image from a .xpm file.*/
 
 static void	get_textures(t_image *texture)
 {
@@ -47,20 +51,16 @@ static void	get_textures(t_image *texture)
 	texture[2].image = mlx_xpm_file_to_image(&texture[2], TEX_2, &x, &y);
 	texture[3].image = mlx_xpm_file_to_image(&texture[3], TEX_3, &x, &y);
 	texture[0].address = mlx_get_data_addr(texture[0].image,
-		&texture[0].bits_per_pixel, &texture[0].line_len, &texture[0].endian);
+			&texture[0].bits_per_pixel, &texture[0].len, &texture[0].endian);
 	texture[1].address = mlx_get_data_addr(texture[1].image,
-		&texture[1].bits_per_pixel, &texture[1].line_len, &texture[1].endian);
+			&texture[1].bits_per_pixel, &texture[1].len, &texture[1].endian);
 	texture[2].address = mlx_get_data_addr(texture[2].image,
-		&texture[2].bits_per_pixel, &texture[2].line_len, &texture[2].endian);
+			&texture[2].bits_per_pixel, &texture[2].len, &texture[2].endian);
 	texture[3].address = mlx_get_data_addr(texture[3].image,
-		&texture[3].bits_per_pixel, &texture[3].line_len, &texture[3].endian);
-	//mlx_put_image_to_window(mlx->connection, mlx->window, texture[0].image, 0, 0);
-	//mlx_put_image_to_window(mlx->connection, mlx->window, texture[1].image, 70, 0);
-	//mlx_put_image_to_window(mlx->connection, mlx->window, texture[2].image, 140, 0);
-	//mlx_put_image_to_window(mlx->connection, mlx->window, texture[3].image, 210, 0);
+			&texture[3].bits_per_pixel, &texture[3].len, &texture[3].endian);
 }
 
-/*Iterates through every pixel on the thread.*/
+/*Iterates through every pixel on the x-axis of the thread.*/
 
 static void	*draw(void *data)
 {
@@ -106,5 +106,6 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player)
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
-	mlx_put_image_to_window(mlx->connection, mlx->window, mlx->image->image, 0, 0);
+	mlx_put_image_to_window(mlx->connection, mlx->window,
+		mlx->image->image, 0, 0);
 }
