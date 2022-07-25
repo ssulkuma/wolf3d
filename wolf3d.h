@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 15:35:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:36:15 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -30,9 +30,9 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define MAX_TEXTURES 4
-# define TEX_0 "./textures/0.xpm"
+# define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
-# define TEX_2 "./textures/2.xpm"
+# define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/3.xpm"
 
 # define ESC_KEY 53
