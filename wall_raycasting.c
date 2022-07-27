@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 11:30:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/27 15:27:21 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ of the screen we're at on the x-axis. -1 is the left side, 0 center and 1
 is the right side. Knowing this we can calculate the direction where the
 ray is being cast.*/
 
-void	raycasting(t_data *data, int x, t_image *texture)
+void	wall_raycasting(t_data *data, int x, t_image *texture)
 {
 	double		cam_position;
 	t_ray		ray;
@@ -146,16 +146,5 @@ void	raycasting(t_data *data, int x, t_image *texture)
 	ray_steps(data, &ray);
 	dda_algorithm(data, &ray);
 	wall_heights(&ray, data);
-/*	printf("X %d\n", x);
-	printf("CAM POS %f\n", cam_position);
-	printf("RAY DIR X %f\n", ray.direction.x);
-	printf("RAY DIR Y %f\n", ray.direction.y);
-	printf("RAY DELTA X %f\n", ray.delta.x);
-	printf("RAY DELTA Y %f\n", ray.delta.y);
-	printf("RAY STEP X %f\n", ray.step.x);
-	printf("RAY STEP Y %f\n", ray.step.y);
-	printf("RAY LENGHT %f\n", ray.length);
-	printf("RAY WALL HEIGHT %d\n", ray.wall.height);
-	printf("\n");*/
 	draw_walls(data, &ray, x, texture);
 }

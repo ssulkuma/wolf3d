@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 13:10:10 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/27 15:27:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -113,8 +113,6 @@ typedef struct s_floor
 	t_vector	step;
 	double		horizon;
 	int			color;
-	int			map_x;
-	int			map_y;
 }				t_floor;
 
 typedef struct s_data
@@ -134,7 +132,7 @@ void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
-void	raycasting(t_data *mlx, int x, t_image *texture);
+void	wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	floor_raycasting(t_data *data, t_image *texture);
 int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);

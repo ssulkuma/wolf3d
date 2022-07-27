@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/07/26 15:27:17 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/07/27 15:25:34 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_FILES = main.c \
 			map_checker.c \
 			error.c \
 			draw.c \
-			raycasting.c \
+			wall_raycasting.c \
 			floor_raycasting.c \
 			key_events.c \
 			mouse_events.c

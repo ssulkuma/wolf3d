@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/26 15:32:54 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/27 15:27:01 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	*draw(void *data)
 	while (x < thread->end_x)
 	{
 		y = 0;
-		raycasting(thread, x, thread->mlx->texture);
+		wall_raycasting(thread, x, thread->mlx->texture);
 		x++;
 	}
 	pthread_exit(NULL);
