@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/21 14:12:41 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:30:52 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	raycasting(t_data *data, int x, t_image *texture)
 	ray_steps(data, &ray);
 	dda_algorithm(data, &ray);
 	wall_heights(&ray, data);
-	printf("X %d\n", x);
+/*	printf("X %d\n", x);
 	printf("CAM POS %f\n", cam_position);
 	printf("RAY DIR X %f\n", ray.direction.x);
 	printf("RAY DIR Y %f\n", ray.direction.y);
@@ -156,6 +156,6 @@ void	raycasting(t_data *data, int x, t_image *texture)
 	printf("RAY STEP Y %f\n", ray.step.y);
 	printf("RAY LENGHT %f\n", ray.length);
 	printf("RAY WALL HEIGHT %d\n", ray.wall.height);
-	printf("\n");
+	printf("\n");*/
 	draw_walls(data, &ray, x, texture);
 }
