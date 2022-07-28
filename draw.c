@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 15:27:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:57:35 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player)
 		thread[index].player = player;
 	}
 	index = -1;
+	skybox(&thread[0], mlx->texture);
 	floor_raycasting(&thread[0], mlx->texture);
 	while (++index < THREADS)
 		pthread_create(&thread_id[index], NULL, draw, &thread[index]);

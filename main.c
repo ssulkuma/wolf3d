@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 11:02:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:08:01 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	get_textures(t_image *texture)
 	int		x;
 	int		y;
 
-	printf("OK\n");
 	x = TEX_WIDTH;
 	y = TEX_HEIGHT;
 	texture[0].image = mlx_xpm_file_to_image(&texture[0], TEX_0, &x, &y);
@@ -37,6 +36,11 @@ static void	get_textures(t_image *texture)
 			&texture[3].bits_per_pixel, &texture[3].len, &texture[3].endian);
 	texture[4].address = mlx_get_data_addr(texture[4].image,
 			&texture[4].bits_per_pixel, &texture[4].len, &texture[4].endian);
+	x = SKYBOX_TEX_WIDTH;
+	y = SKYBOX_TEX_HEIGHT;
+	texture[5].image = mlx_xpm_file_to_image(&texture[5], TEX_5, &x, &y);
+	texture[5].address = mlx_get_data_addr(texture[5].image,
+			&texture[5].bits_per_pixel, &texture[5].len, &texture[5].endian);
 }
 
 /*Initializes the struct variables needed to open a graphic window and the

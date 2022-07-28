@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 15:27:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:40:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -29,12 +29,15 @@
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define MAX_TEXTURES 5
+# define SKYBOX_TEX_WIDTH 400
+# define SKYBOX_TEX_HEIGHT 100
+# define MAX_TEXTURES 6
 # define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
 # define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/3.xpm"
 # define TEX_4 "./textures/0.xpm"
+# define TEX_5 "./textures/5.xpm"
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -79,6 +82,7 @@ typedef struct s_mlx
 	void		*window;
 	t_image		*image;
 	t_image		*texture;
+	t_image		*skybox;
 	t_map		*map;
 	t_player	*player;
 }				t_mlx;
@@ -134,6 +138,7 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	floor_raycasting(t_data *data, t_image *texture);
+void	skybox(t_data *data, t_image *texture);
 int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
