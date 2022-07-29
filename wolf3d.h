@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/28 15:40:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/07/29 13:35:19 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -26,11 +26,12 @@
 # define HEIGHT 640
 # define BUFFER_SIZE 10
 # define THREADS 10
+# define PI 3.141592654
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define SKYBOX_TEX_WIDTH 400
-# define SKYBOX_TEX_HEIGHT 100
+# define SKYBOX_TEX_WIDTH 800
+# define SKYBOX_TEX_HEIGHT 200
 # define MAX_TEXTURES 6
 # define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
