@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/01 13:32:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:06:04 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	struct_intel(t_mlx *mlx, t_player *player, t_image *screen)
 	player->cam_plane.x = 0;
 	player->cam_plane.y = 0.66;
 	player->move_speed = 0.3;
-	player->turn_speed = 0.05;
+	player->turn_speed = 0.075;
 }
 
 /*Displays usage message in case of misusage. List of event hooks.*/

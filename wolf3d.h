@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/29 13:35:19 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:26:59 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -31,14 +31,14 @@
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define SKYBOX_TEX_WIDTH 800
-# define SKYBOX_TEX_HEIGHT 200
+# define SKYBOX_TEX_HEIGHT 198
 # define MAX_TEXTURES 6
 # define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
 # define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/3.xpm"
 # define TEX_4 "./textures/0.xpm"
-# define TEX_5 "./textures/5.xpm"
+# define TEX_5 "./textures/sky.xpm"
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -128,6 +128,15 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 }				t_data;
+
+typedef struct s_skybox
+{
+	t_vector	tex;
+	t_vector	step;
+	double		result;
+	int			color;
+
+}				t_skybox;
 
 void	error(const char *str);
 void	buff_error(char *saved_map, int file);
