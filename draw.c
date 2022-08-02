@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/01 12:54:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:34:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player)
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
+	objects(&thread[0], mlx->texture);
 	mlx_put_image_to_window(mlx->connection, mlx->window,
 		mlx->image->image, 0, 0);
 }

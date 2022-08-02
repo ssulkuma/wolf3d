@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/02 11:46:55 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:27:45 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -32,13 +32,14 @@
 # define TEX_HEIGHT 64
 # define SKYBOX_TEX_WIDTH 400
 # define SKYBOX_TEX_HEIGHT 99
-# define MAX_TEXTURES 6
+# define MAX_TEXTURES 7
 # define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
 # define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/3.xpm"
 # define TEX_4 "./textures/0.xpm"
 # define TEX_5 "./textures/sky.xpm"
+# define TEX_6 "./textures/barrel.xpm"
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -149,6 +150,7 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	floor_raycasting(t_data *data, t_image *texture);
 void	skybox(t_data *data, t_image *texture);
+void	objects(t_data *data, t_image *texture);
 int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);

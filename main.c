@@ -6,11 +6,20 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/01 14:06:04 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:12:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void	object_textures(t_image *texture, int x, int y)
+{
+	x = TEX_WIDTH;
+	y = TEX_HEIGHT;
+	texture[6].image = mlx_xpm_file_to_image(&texture[6], TEX_6, &x, &y);
+	texture[6].address = mlx_get_data_addr(texture[6].image,
+			&texture[6].bits_per_pixel, &texture[6].len, &texture[6].endian);
+}
 
 /*Saves the texture information to an image from a .xpm file.*/
 
@@ -41,6 +50,7 @@ static void	get_textures(t_image *texture)
 	texture[5].image = mlx_xpm_file_to_image(&texture[5], TEX_5, &x, &y);
 	texture[5].address = mlx_get_data_addr(texture[5].image,
 			&texture[5].bits_per_pixel, &texture[5].len, &texture[5].endian);
+	object_textures(texture, x, y);
 }
 
 /*Initializes the struct variables needed to open a graphic window and the
