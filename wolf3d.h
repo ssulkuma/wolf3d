@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/02 15:27:45 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/03 13:44:18 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -26,6 +26,7 @@
 # define HEIGHT 640
 # define BUFFER_SIZE 10
 # define THREADS 10
+# define MAX_OBJECTS 50
 # define PI 3.141592654
 
 # define TEX_WIDTH 64
@@ -52,6 +53,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			**matrix;
+	int			object_count;
 }				t_map;
 
 typedef struct s_vector
@@ -123,6 +125,7 @@ typedef struct s_floor
 
 typedef struct s_data
 {
+	double		depth[WIDTH];
 	int			start_x;
 	int			end_x;
 	t_mlx		*mlx;
@@ -139,12 +142,23 @@ typedef struct s_skybox
 
 }				t_skybox;
 
+typedef struct s_object
+{
+	t_vector	position;
+	t_vector	sprite;
+	t_vector	transform;
+	int			width;
+	int			height;
+	int			color;
+}				t_object;
+
 void	error(const char *str);
 void	buff_error(char *saved_map, int file);
 void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
+void    count_objects_in_map(char *saved_map, t_map *map);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/07 15:33:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/03 13:40:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	create_matrix(char *saved_map, t_map *map, int file)
 
 	close(file);
 	check_map_characters(saved_map);
+	count_objects_in_map(saved_map, map);
 	matrix = ft_strsplit(saved_map, '\n');
 	if (!matrix)
 		matrix_error(matrix, saved_map, -1);

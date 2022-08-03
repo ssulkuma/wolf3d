@@ -6,11 +6,32 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:22:07 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/07 16:09:30 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:04:31 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Counts how many objects are within the map. Objects are represented as 6, 7
+ * and 8 in the map.*/
+
+void	count_objects_in_map(char *saved_map, t_map *map)
+{
+	int		index;
+
+	map->object_count = 0;
+	index = 0;
+	while (saved_map[index] != '\0')
+	{
+		if ((saved_map[index] >= '6' && saved_map[index] <= '8')
+			&& (saved_map[index + 1] == ',' || saved_map[index + 1] == '\n'
+			|| saved_map[index + 1] == '\0') && (saved_map[index - 1] == ','
+			|| saved_map[index - 1] == '\n' || index == 0))
+			map->object_count++;
+		index++;
+	}
+	printf("OBJ COUNT %d\n", map->object_count);
+}
 
 /*Checks that the map file only consists of digits, newlines and single commas
  * between the digits.*/

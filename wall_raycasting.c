@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 15:27:21 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/03 11:31:57 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ static void	wall_heights(t_ray *ray, t_data *data)
 }
 
 /*Calculates the scale of the texture needs to be drawn in and loops through
- * the wall height of the y-axis.*/
+ * the wall height of the y-axis. Saves distance to wall for every x coordinate
+ * that will be used later to draw objects.*/
 
 static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 {
@@ -124,6 +125,7 @@ static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 		tex_y += step;
 		y++;
 	}
+	data->depth[x] = ray->length;
 }
 
 /*This is where our raycasting begins. Cam_position represents what side
