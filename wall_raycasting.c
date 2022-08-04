@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:25 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:15:04 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static int	dda_algorithm(t_data *data, t_ray *ray)
 		else
 			ray->wall.side = 3;
 	}
-	if (ray->map_x < 0 || ray->map_x > data->map->width
-		|| ray->map_y < 0 || ray->map_y > data->map->height)
+	if (ray->map_x < 0 || ray->map_x >= data->map->width
+		|| ray->map_y < 0 || ray->map_y >= data->map->height)
 		return (-1);
 	if (data->map->matrix[ray->map_x][ray->map_y] == 1)
 		return (1);

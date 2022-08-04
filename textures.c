@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:53:13 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:46:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:58:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	wall_and_floor_textures(t_image *texture)
 	texture[2].address = mlx_get_data_addr(texture[2].image,
 			&texture[2].bits_per_pixel, &texture[2].len, &texture[2].endian);
 	texture[3].image = mlx_xpm_file_to_image(&texture[3], TEX_3, &x, &y);
-	exture[3].address = mlx_get_data_addr(texture[3].image,
+	texture[3].address = mlx_get_data_addr(texture[3].image,
 			&texture[3].bits_per_pixel, &texture[3].len, &texture[3].endian);
 	texture[4].image = mlx_xpm_file_to_image(&texture[4], TEX_4, &x, &y);
 	texture[4].address = mlx_get_data_addr(texture[4].image,

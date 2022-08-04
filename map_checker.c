@@ -6,14 +6,14 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:22:07 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:44:49 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:56:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*Counts how many objects are within the map. Objects are represented as 6, 7
- * and 8 in the map.*/
+/*Counts how many objects are within the map. Objects are represented as 2, 3
+ * and 4 in the map.*/
 
 void	count_objects_in_map(char *saved_map, t_map *map)
 {
@@ -23,7 +23,7 @@ void	count_objects_in_map(char *saved_map, t_map *map)
 	index = 0;
 	while (saved_map[index] != '\0')
 	{
-		if ((saved_map[index] >= '6' && saved_map[index] <= '8')
+		if ((saved_map[index] >= '2' && saved_map[index] <= '4')
 			&& (saved_map[index + 1] == ',' || saved_map[index + 1] == '\n'
 				|| saved_map[index + 1] == '\0') && (saved_map[index - 1] == ','
 				|| saved_map[index - 1] == '\n' || index == 0))
@@ -86,4 +86,6 @@ void	check_map_size(char **matrix, t_map *map)
 			error("Error: Invalid map.");
 		height++;
 	}
+	if (map->width < 3 || map->height < 3)
+		error("Error: Map too small.");
 }
