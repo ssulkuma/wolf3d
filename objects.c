@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/02 15:35:43 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:38:24 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,14 @@
 
 void	objects(t_data *data, t_image *texture)
 {
-	int		x;
-	int		y;
-	int		color;
+	t_object	object;
+	int			index;
 
-	y = 0;
-	while (y < TEX_HEIGHT)
+	index = 0;
+	while (index < data->mlx->map->object_count)
 	{
-		x = 0;
-		while (x < TEX_WIDTH)
-		{
-			color = get_pixel_from_image(&texture[6], x, y);
-			if (color != 0x000000)
-				draw_pixel_to_image(data->mlx, x, y, color);
-			x++;
-		}
-		y++;
+		(void)object;
+		(void)texture;
+		index++;
 	}
 }

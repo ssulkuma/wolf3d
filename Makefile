@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/08/02 15:28:21 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/08/04 13:22:54 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC_FILES = main.c \
 			map.c \
 			map_checker.c \
 			error.c \
+			textures.c \
 			draw.c \
 			wall_raycasting.c \
 			floor_raycasting.c \

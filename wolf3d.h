@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/03 13:44:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:46:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -33,14 +33,19 @@
 # define TEX_HEIGHT 64
 # define SKYBOX_TEX_WIDTH 400
 # define SKYBOX_TEX_HEIGHT 99
-# define MAX_TEXTURES 7
+# define MAX_TEXTURES 12
 # define TEX_0 "./textures/01.xpm"
 # define TEX_1 "./textures/1.xpm"
 # define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/3.xpm"
 # define TEX_4 "./textures/0.xpm"
 # define TEX_5 "./textures/sky.xpm"
-# define TEX_6 "./textures/barrel.xpm"
+# define TEX_6 "./textures/sky.xpm"
+# define TEX_7 "./textures/barrel.xpm"
+# define TEX_8 "./textures/barrel.xpm"
+# define TEX_9 "./textures/barrel.xpm"
+# define TEX_10 "./textures/barrel.xpm"
+# define TEX_11 "./textures/barrel.xpm"
 
 # define ESC_KEY 53
 # define ARROW_LEFT 123
@@ -158,7 +163,8 @@ void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
-void    count_objects_in_map(char *saved_map, t_map *map);
+void	count_objects_in_map(char *saved_map, t_map *map);
+void	get_textures(t_image *texture);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);

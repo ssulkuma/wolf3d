@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   wall_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/03 11:31:57 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:25 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,32 @@ to a wall in grid. Checks for every grid line on ray's way so the calculations
 are minimized without going past a possible wall. Calculates which compass
 point on of a wall block we've hit.*/
 
-static void	dda_algorithm(t_data *data, t_ray *ray)
+static int	dda_algorithm(t_data *data, t_ray *ray)
 {
-	ray->wall.hit = 0;
-	while (!ray->wall.hit)
+	if (ray->grid.x < ray->grid.y)
 	{
-		if (ray->grid.x < ray->grid.y)
-		{
-			ray->grid.x += ray->delta.x;
-			ray->map_x += ray->step.x;
-			if (data->player->position.x > ray->map_x)
-				ray->wall.side = 0;
-			else
-				ray->wall.side = 1;
-		}
+		ray->grid.x += ray->delta.x;
+		ray->map_x += ray->step.x;
+		if (data->player->position.x > ray->map_x)
+			ray->wall.side = 0;
 		else
-		{
-			ray->grid.y += ray->delta.y;
-			ray->map_y += ray->step.y;
-			if (data->player->position.y > ray->map_y)
-				ray->wall.side = 2;
-			else
-				ray->wall.side = 3;
-		}
-		if (data->map->matrix[ray->map_x][ray->map_y] > 0)
-			ray->wall.hit = 1;
+			ray->wall.side = 1;
 	}
+	else
+	{
+		ray->grid.y += ray->delta.y;
+		ray->map_y += ray->step.y;
+		if (data->player->position.y > ray->map_y)
+			ray->wall.side = 2;
+		else
+			ray->wall.side = 3;
+	}
+	if (ray->map_x < 0 || ray->map_x > data->map->width
+		|| ray->map_y < 0 || ray->map_y > data->map->height)
+		return (-1);
+	if (data->map->matrix[ray->map_x][ray->map_y] == 1)
+		return (1);
+	return (0);
 }
 
 /*Calculates the perpendicular distance instead the Euclidean distance of the
@@ -84,6 +84,8 @@ static void	dda_algorithm(t_data *data, t_ray *ray)
 
 static void	wall_heights(t_ray *ray, t_data *data)
 {
+	if (ray->wall.hit == -1)
+		return ;
 	if (ray->wall.side == 0 || ray->wall.side == 1)
 		ray->length = ray->grid.x - ray->delta.x;
 	else
@@ -110,6 +112,8 @@ static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 	double		tex_y;
 	double		tex_x;
 
+	if (ray->wall.hit == -1)
+		return ;
 	step = 1.0 * TEX_HEIGHT / ray->wall.height;
 	tex_y = 0;
 	tex_x = (int)(ray->hit * TEX_WIDTH);
@@ -146,7 +150,9 @@ void	wall_raycasting(t_data *data, int x, t_image *texture)
 	ray.map_x = data->player->position.x;
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);
-	dda_algorithm(data, &ray);
+	ray.wall.hit = 0;
+	while (!ray.wall.hit)
+		ray.wall.hit = dda_algorithm(data, &ray);
 	wall_heights(&ray, data);
 	draw_walls(data, &ray, x, texture);
 }

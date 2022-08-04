@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:22:07 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/03 16:04:31 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:44:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	count_objects_in_map(char *saved_map, t_map *map)
 	{
 		if ((saved_map[index] >= '6' && saved_map[index] <= '8')
 			&& (saved_map[index + 1] == ',' || saved_map[index + 1] == '\n'
-			|| saved_map[index + 1] == '\0') && (saved_map[index - 1] == ','
-			|| saved_map[index - 1] == '\n' || index == 0))
+				|| saved_map[index + 1] == '\0') && (saved_map[index - 1] == ','
+				|| saved_map[index - 1] == '\n' || index == 0))
 			map->object_count++;
 		index++;
 	}
