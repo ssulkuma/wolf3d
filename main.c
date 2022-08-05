@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:59:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:42:30 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	main(int argc, char **argv)
 	}
 	read_map(argv[1], &map);
 	init(&mlx, &player, &image, &map);
-	printf("WIDTH %d\n", map.width);
-	printf("HEIGHT %d\n", map.height);
 	mlx.image = &image;
 	get_textures(texture);
 	mlx.texture = texture;
