@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/05 10:42:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:26:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ static void	*draw(void *data)
 {
 	t_data				*thread;
 	int					x;
-	int					y;
 
 	thread = (t_data *)data;
 	x = thread->start_x;
 	while (x < thread->end_x)
 	{
-		y = 0;
 		wall_raycasting(thread, x, thread->mlx->texture);
+		objects(thread, thread->mlx->texture);
 		x++;
 	}
 	pthread_exit(NULL);
@@ -83,7 +82,6 @@ void	create_threads(t_mlx *mlx, t_map *map, t_player *player)
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
-	objects(&thread[0], mlx->texture);
 	mlx_put_image_to_window(mlx->connection, mlx->window,
 		mlx->image->image, 0, 0);
 }
