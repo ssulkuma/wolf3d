@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:32:19 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:19:59 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/15 12:32:11 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static void	draw_skybox(t_data *data, t_image *texture, t_skybox *skybox)
 	int			x;
 	int			y;
 
-	skybox->step.x = (double)SKYBOX_TEX_WIDTH / 4.0 / (double)WIDTH;
-	skybox->step.y = (double)SKYBOX_TEX_HEIGHT / (double)HEIGHT;
+	skybox->step.x = (double)SKYBOX_TEX_WIDTH  / 2.0 / (double)WIDTH;
+	skybox->step.y = (double)SKYBOX_TEX_HEIGHT / ((double)HEIGHT / 2);
 	skybox->tex.y = 0;
 	y = 0;
-	while (y < HEIGHT)
+	while (y < HEIGHT / 2)
 	{
 		x = 0;
 		skybox->tex.x = SKYBOX_TEX_WIDTH - (skybox->result / 360)
