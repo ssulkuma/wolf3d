@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/05 10:42:30 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/18 14:56:17 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ static void	init(t_mlx *mlx, t_player *player, t_image *screen, t_map *map)
 	player->cam_plane.y = 0.66;
 	player->move_speed = 0.3;
 	player->turn_speed = 0.075;
+	mlx->fire.x = 0;
+	mlx->fire.y = 0;
+	mlx->wand.x = 340;
+	mlx->wand.y = 512;
+	mlx->click = 0;
 }
 
 /*Displays usage message in case of misusage. List of event hooks.*/
@@ -65,6 +70,8 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
+	//mlx_loop_hook(mlx.connection, wand_animation, &mlx);
+	//mlx_loop_hook(mlx->connection, fire_animation, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }
