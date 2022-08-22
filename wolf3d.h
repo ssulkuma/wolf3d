@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:41:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:12:04 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -138,6 +138,8 @@ typedef struct s_data
 	double		depth[WIDTH];
 	int			start_x;
 	int			end_x;
+	int			start_y;
+	int			end_y;
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
@@ -175,7 +177,7 @@ void	render(t_mlx *mlx);
 void	create_threads(t_mlx *mlx, void *(*function)(void *));
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	floor_raycasting(t_data *data, t_image *texture);
-void	skybox(t_data *data, t_image *texture);
+void	*skybox(void *thread);
 void	objects(t_data *data, t_image *texture);
 void	wand(t_mlx *mlx);
 void	fire(t_mlx *mlx);

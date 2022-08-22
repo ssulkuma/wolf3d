@@ -6,25 +6,23 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:32:19 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:56:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:54:50 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*Calculates the scale needed for the skybox texture, then gets color and
- * draws the pixel for every screen coordinate.*/
+/*Gets color from texture image and draws every pixel within every thread's
+ * bounds.*/
 
 static void	draw_skybox(t_data *data, t_image *texture, t_skybox *skybox)
 {
 	int			x;
 	int			y;
 
-	skybox->step.x = (double)SKYBOX_TEX_WIDTH  / 2.0 / (double)WIDTH;
-	skybox->step.y = (double)SKYBOX_TEX_HEIGHT / ((double)HEIGHT / 2);
-	skybox->tex.y = 0;
-	y = 0;
-	while (y < HEIGHT / 2)
+	skybox->tex.y = data->start_y * skybox->step.y;
+	y = data->start_y;
+	while (y < data->end_y)
 	{
 		x = 0;
 		skybox->tex.x = SKYBOX_TEX_WIDTH - (skybox->result / 360)
@@ -44,15 +42,21 @@ static void	draw_skybox(t_data *data, t_image *texture, t_skybox *skybox)
 	}
 }
 
-/*Calculates the range from the player direction.*/
+/*Calculates the range from the player direction and the scale needed for
+ * the skybox texture.*/
 
-void	skybox(t_data *data, t_image *texture)
+void	*skybox(void *thread)
 {
+	t_data		*data;
 	t_skybox	skybox;
 
+	data = (t_data *)thread;
 	skybox.result = atan2(data->player->direction.y, data->player->direction.x);
 	if (skybox.result < 0)
 		skybox.result = skybox.result + 2.0 * PI;
 	skybox.result = skybox.result * 180.0 / PI;
-	draw_skybox(data, texture, &skybox);
+	skybox.step.x = (double)SKYBOX_TEX_WIDTH / 2.0 / (double)WIDTH;
+	skybox.step.y = (double)SKYBOX_TEX_HEIGHT / ((double)HEIGHT / 2);
+	draw_skybox(data, data->mlx->texture, &skybox);
+	pthread_exit(NULL);
 }

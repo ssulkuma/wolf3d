@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:56:53 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:33:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ int	get_pixel_from_image(t_image *texture, int x, int y)
 
 /*Iterates through every pixel on the x-axis of the thread.*/
 
-static void	*draw(void *data)
+static void	*draw(void *thread)
 {
-	t_data				*thread;
+	t_data				*data;
 	int					x;
 
-	thread = (t_data *)data;
-	x = thread->start_x;
-	while (x < thread->end_x)
+	data = (t_data *)thread;
+	x = data->start_x;
+	while (x < data->end_x)
 	{
-		wall_raycasting(thread, x, thread->mlx->texture);
+		wall_raycasting(data, x, data->mlx->texture);
 		x++;
 	}
 	pthread_exit(NULL);
@@ -69,33 +69,37 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 	{
 		thread[index].start_x = WIDTH / THREADS * index;
 		thread[index].end_x = WIDTH / THREADS * (index + 1);
+		thread[index].start_y = (HEIGHT / 2) / THREADS * index;
+		thread[index].end_y = (HEIGHT / 2) / THREADS * (index + 1);
 		thread[index].mlx = mlx;
 		thread[index].map = mlx->map;
 		thread[index].player = mlx->player;
+		printf("START Y %d\n", thread[index].start_y);
+		printf("END Y %d\n", thread[index].end_y);
 	}
 	index = -1;
-	skybox(&thread[0], mlx->texture);
-	floor_raycasting(&thread[0], mlx->texture);
+	//skybox(&thread[0], mlx->texture);
+	//floor_raycasting(&thread[0], mlx->texture);
 	while (++index < THREADS)
 		pthread_create(&thread_id[index], NULL, function, &thread[index]);
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
-	wand(mlx);
-	fire(mlx);
-	mlx_put_image_to_window(mlx->connection, mlx->window,
-		mlx->image->image, 0, 0);
-}
-
-void	render(t_mlx *mlx)
-{
-	create_threads(mlx, &draw);
-	//create_threads(mlx, &skybox);
-	//create_threads(mlx, &floor_raycasting);
-	//create_threads(mlx, &wall_raycasting);
-	//create_threads(mlx, &objects);
 	//wand(mlx);
 	//fire(mlx);
 	//mlx_put_image_to_window(mlx->connection, mlx->window,
 		//mlx->image->image, 0, 0);
+}
+
+void	render(t_mlx *mlx)
+{
+	create_threads(mlx, &skybox);
+	create_threads(mlx, &draw);
+	//create_threads(mlx, &floor_raycasting);
+	//create_threads(mlx, &wall_raycasting);
+	//create_threads(mlx, &objects);
+	wand(mlx);
+	fire(mlx);
+	mlx_put_image_to_window(mlx->connection, mlx->window,
+		mlx->image->image, 0, 0);
 }
