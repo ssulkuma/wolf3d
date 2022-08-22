@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:00:47 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/27 15:23:38 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:25:00 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ static void	draw_floor(t_data *data, t_image *texture, t_floor *floor, int y)
  * view hits the horizontal line and the position the ray is hitting on the
  * map.*/
 
-void	floor_raycasting(t_data *data, t_image *texture)
+void	*floor_raycasting(void *thread)
 {
+	t_data		*data;
 	t_floor		floor;
 	int			y;
 
-	y = HEIGHT / 2;
-	while (y < HEIGHT)
+	data = (t_data *)thread;
+	y = data->start_y + 320;
+	while (y < data->end_y + 320)
 	{
 		utmost_rays(data, &floor);
 		floor.horizon = y - HEIGHT / 2;
@@ -69,7 +71,8 @@ void	floor_raycasting(t_data *data, t_image *texture)
 			+ (HEIGHT / 2 / floor.horizon) * floor.left_ray.x;
 		floor.position.y = data->player->position.y
 			+ (HEIGHT / 2 / floor.horizon) * floor.left_ray.y;
-		draw_floor(data, texture, &floor, y);
+		draw_floor(data, data->mlx->texture, &floor, y);
 		y++;
 	}
+	pthread_exit(NULL);
 }

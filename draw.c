@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 15:33:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:18:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	get_pixel_from_image(t_image *texture, int x, int y)
 
 static void	*draw(void *thread)
 {
-	t_data				*data;
-	int					x;
+	t_data		*data;
+	int			x;
 
 	data = (t_data *)thread;
 	x = data->start_x;
@@ -74,11 +74,8 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 		thread[index].mlx = mlx;
 		thread[index].map = mlx->map;
 		thread[index].player = mlx->player;
-		printf("START Y %d\n", thread[index].start_y);
-		printf("END Y %d\n", thread[index].end_y);
 	}
 	index = -1;
-	//skybox(&thread[0], mlx->texture);
 	//floor_raycasting(&thread[0], mlx->texture);
 	while (++index < THREADS)
 		pthread_create(&thread_id[index], NULL, function, &thread[index]);
@@ -94,8 +91,8 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 void	render(t_mlx *mlx)
 {
 	create_threads(mlx, &skybox);
+	create_threads(mlx, &floor_raycasting);
 	create_threads(mlx, &draw);
-	//create_threads(mlx, &floor_raycasting);
 	//create_threads(mlx, &wall_raycasting);
 	//create_threads(mlx, &objects);
 	wand(mlx);
