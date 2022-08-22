@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:02:30 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:33:35 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,18 @@ void	wand(t_mlx *mlx)
 		x++;
 	}
 }
-
-void	objects(t_data *data, t_image *texture)
+/*
+void	*objects(void *thread)
 {
+	t_data		*data;
 	t_object	object;
 	int			index;
 
+	data = (t_data *)data;
 	index = 0;
 	while (index < data->mlx->map->object_count)
 	{
 		//printf("DEPTH %f\n", data->depth[index]);
-		(void)object;
-		(void)texture;
 		index++;
 	}
-}
+}*/

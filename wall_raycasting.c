@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/16 13:58:10 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:30:57 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ of the screen we're at on the x-axis. -1 is the left side, 0 center and 1
 is the right side. Knowing this we can calculate the direction where the
 ray is being cast.*/
 
-void	wall_raycasting(t_data *data, int x, t_image *texture)
+void	draw_wall_raycasting(t_data *data, int x, t_image *texture)
 {
 	double		cam_position;
 	t_ray		ray;

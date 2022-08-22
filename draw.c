@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:18:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:30:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_pixel_from_image(t_image *texture, int x, int y)
 
 /*Iterates through every pixel on the x-axis of the thread.*/
 
-static void	*draw(void *thread)
+static void	*wall_raycasting(void *thread)
 {
 	t_data		*data;
 	int			x;
@@ -48,7 +48,7 @@ static void	*draw(void *thread)
 	x = data->start_x;
 	while (x < data->end_x)
 	{
-		wall_raycasting(data, x, data->mlx->texture);
+		draw_wall_raycasting(data, x, data->mlx->texture);
 		x++;
 	}
 	pthread_exit(NULL);
@@ -76,24 +76,18 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 		thread[index].player = mlx->player;
 	}
 	index = -1;
-	//floor_raycasting(&thread[0], mlx->texture);
 	while (++index < THREADS)
 		pthread_create(&thread_id[index], NULL, function, &thread[index]);
 	index = -1;
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
-	//wand(mlx);
-	//fire(mlx);
-	//mlx_put_image_to_window(mlx->connection, mlx->window,
-		//mlx->image->image, 0, 0);
 }
 
 void	render(t_mlx *mlx)
 {
 	create_threads(mlx, &skybox);
 	create_threads(mlx, &floor_raycasting);
-	create_threads(mlx, &draw);
-	//create_threads(mlx, &wall_raycasting);
+	create_threads(mlx, &wall_raycasting);
 	//create_threads(mlx, &objects);
 	wand(mlx);
 	fire(mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:02:45 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:31:48 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -175,10 +175,10 @@ void	get_textures(t_image *texture);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	render(t_mlx *mlx);
 void	create_threads(t_mlx *mlx, void *(*function)(void *));
-void	wall_raycasting(t_data *mlx, int x, t_image *texture);
+void	draw_wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	*floor_raycasting(void *thread);
 void	*skybox(void *thread);
-void	objects(t_data *data, t_image *texture);
+void	*objects(void *thread);
 void	wand(t_mlx *mlx);
 void	fire(t_mlx *mlx);
 int		get_pixel_from_image(t_image *texture, int x, int y);
