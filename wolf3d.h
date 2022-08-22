@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/19 18:38:24 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:41:02 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -171,11 +171,14 @@ void	check_map_size(char **matrix, t_map *map);
 void	count_objects_in_map(char *saved_map, t_map *map);
 void	get_textures(t_image *texture);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
-void	create_threads(t_mlx *mlx, t_map *map, t_player *player);
+void	render(t_mlx *mlx);
+void	create_threads(t_mlx *mlx, void *(*function)(void *));
 void	wall_raycasting(t_data *mlx, int x, t_image *texture);
 void	floor_raycasting(t_data *data, t_image *texture);
 void	skybox(t_data *data, t_image *texture);
 void	objects(t_data *data, t_image *texture);
+void	wand(t_mlx *mlx);
+void	fire(t_mlx *mlx);
 int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/18 14:56:17 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:42:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,12 @@ int	main(int argc, char **argv)
 	mlx.image = &image;
 	get_textures(texture);
 	mlx.texture = texture;
-	create_threads(&mlx, &map, &player);
 	mlx.map = &map;
 	mlx.player = &player;
+	render(&mlx);
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
-	//mlx_loop_hook(mlx.connection, wand_animation, &mlx);
-	//mlx_loop_hook(mlx->connection, fire_animation, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }

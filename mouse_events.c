@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:03:59 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/19 19:33:50 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:46:14 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	wand_animation(t_mlx *mlx)
 	printf("2\n");
 	while (mlx->wand.x <= 500)
 	{
-		create_threads(mlx, mlx->map, mlx->player);
+		render(mlx);
 		mlx->wand.x += ANIMATION_DURATION;
 		mlx->wand.y -= ANIMATION_DURATION;
 	}
 	while (mlx->wand.x >= 340)
 	{
-		create_threads(mlx, mlx->map, mlx->player);
+		render(mlx);
 		mlx->wand.x -= ANIMATION_DURATION;
 		mlx->wand.y += ANIMATION_DURATION;
 	}
@@ -48,12 +48,12 @@ int	fire_animation(t_mlx *mlx)
 	duration = 0;
 	while (duration < 5)
 	{
-		create_threads(mlx, mlx->map, mlx->player);
+		render(mlx);
 		duration += ANIMATION_DURATION;
 	}
 	mlx->fire.x = 0;
 	mlx->fire.y = 0;
-	create_threads(mlx, mlx->map, mlx->player);
+	render(mlx);
 	return (0);
 }
 
@@ -88,7 +88,7 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 			mlx->fire.x = x - 140;
 			mlx->fire.y = y - 180;
 		}*/
-		create_threads(mlx, mlx->map, mlx->player);
+		render(mlx);
 		//mlx_loop_hook(mlx->connection, fire_animation, mlx);
 	}
 	ft_putnbr(x);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/05 10:41:37 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:45:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	rotate_right(t_mlx *mlx)
 		* sin(-mlx->player->turn_speed) + mlx->player->cam_plane.y
 		* cos(-mlx->player->turn_speed);
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
-	create_threads(mlx, mlx->map, mlx->player);
+	render(mlx);
 }
 
 /*Key event to rotate the view left. Both player direction and camera plane
@@ -61,7 +61,7 @@ static void	rotate_left(t_mlx *mlx)
 		* sin(mlx->player->turn_speed) + mlx->player->cam_plane.y
 		* cos(mlx->player->turn_speed);
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
-	create_threads(mlx, mlx->map, mlx->player);
+	render(mlx);
 }
 
 /*Key event to move backwards inside the map. Calculates the next x and y
@@ -86,7 +86,7 @@ static void	move_backwards(t_mlx *mlx)
 		mlx->player->position.y -= mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
-	create_threads(mlx, mlx->map, mlx->player);
+	render(mlx);
 }
 
 /*Key event to move forward inside the map. Calculates the next x and y
@@ -111,7 +111,7 @@ static void	move_forward(t_mlx *mlx)
 		mlx->player->position.y += mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
-	create_threads(mlx, mlx->map, mlx->player);
+	render(mlx);
 }
 
 /*Function to be called when any key down related events are triggered. ESC key
