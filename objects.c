@@ -6,11 +6,13 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 15:37:31 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:22:51 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Checks how much the fire texture needs to be scaled for a specific frame.*/
 
 static int	get_fire_scale(t_mlx *mlx)
 {
@@ -25,6 +27,8 @@ static int	get_fire_scale(t_mlx *mlx)
 	else
 		return (5);
 }
+
+/*Draws the fire to the position of mouse click.*/
 
 void	fire(t_mlx *mlx)
 {
@@ -53,6 +57,8 @@ void	fire(t_mlx *mlx)
 		}
 	}
 }
+
+/*Draws the wand to the down center of the window.*/
 
 void	wand(t_mlx *mlx)
 {

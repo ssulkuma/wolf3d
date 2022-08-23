@@ -6,11 +6,14 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 15:18:36 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:25:42 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*A continues mlx loop that renders the image with every frame. Upon a mouse
+ * click, increases scale value of fire texture to create an animation.*/
 
 int	fire_animation(t_mlx *mlx)
 {

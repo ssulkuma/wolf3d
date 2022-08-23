@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 15:37:47 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:33:14 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	*wall_raycasting(void *thread)
 	pthread_exit(NULL);
 }
 
-/*Counts the width for every thread, so that the image will be drawn in
- * parts. Creates the threads and waits for all of the tasks to be done
- * the same time, before pushing the image to the window.*/
+/*Counts the width or height for every thread, so that the image will be
+ * drawn in parts. Creates the threads and waits for all of the tasks to be
+ * done the same time.*/
 
 void	create_threads(t_mlx *mlx, void *(*function)(void *))
 {
@@ -82,6 +82,10 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 	while (++index < THREADS)
 		pthread_join(thread_id[index], NULL);
 }
+
+/*This is where the image rendering happens. Sends the correct function pointers
+ * to the multithreading function in the right order and after each part is
+ * done, puts the image to the window.*/
 
 void	render(t_mlx *mlx)
 {
