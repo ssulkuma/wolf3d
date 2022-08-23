@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:42:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 13:52:55 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	init(t_mlx *mlx, t_player *player, t_image *screen, t_map *map)
 	mlx->fire.y = 0;
 	mlx->wand.x = 340;
 	mlx->wand.y = 512;
+	mlx->fire_scale = 0.0;
 	mlx->click = 0;
 }
 
@@ -70,6 +71,7 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
 	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
 	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
+	mlx_loop_hook(mlx.connection, fire_animation, &mlx);
 	mlx_loop(mlx.connection);
 	return (0);
 }

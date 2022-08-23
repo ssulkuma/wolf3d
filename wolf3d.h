@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:31:48 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:22:08 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -26,7 +26,7 @@
 # define HEIGHT 640
 # define BUFFER_SIZE 10
 # define THREADS 10
-# define ANIMATION_DURATION 0.25
+# define ANIMATION_DURATION 50
 # define MAX_OBJECTS 50
 # define PI 3.141592654
 
@@ -53,7 +53,7 @@
 # define ARROW_RIGHT 124
 # define ARROW_DOWN 125
 # define ARROW_UP 126
-# define MOUSE_RIGHT 1
+# define MOUSE_LEFT 1
 
 typedef struct s_map
 {
@@ -98,6 +98,7 @@ typedef struct s_mlx
 	t_player	*player;
 	t_vector	fire;
 	t_vector	wand;
+	double		fire_scale;
 	int			click;
 }				t_mlx;
 

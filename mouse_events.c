@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:03:59 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 13:46:14 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 13:49:14 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,55 +41,15 @@ int	wand_animation(t_mlx *mlx)
 	return (0);
 }
 
-int	fire_animation(t_mlx *mlx)
-{
-	double	duration;
-
-	duration = 0;
-	while (duration < 5)
-	{
-		render(mlx);
-		duration += ANIMATION_DURATION;
-	}
-	mlx->fire.x = 0;
-	mlx->fire.y = 0;
-	render(mlx);
-	return (0);
-}
-
 /*Function to be called when any mouse down related events are triggered.*/
 
 int	mouse_events(int button, int x, int y, t_mlx *mlx)
 {
-	if (button == MOUSE_RIGHT)
+	if (button == MOUSE_LEFT)
 	{
-		printf("1\n");
-		mlx->click = 1;
+		mlx->click += 1;
 		mlx->fire.x = x;
 		mlx->fire.y = y;
-		//wand_animation(mlx);
-		/*if (y <= 205)
-		{
-			mlx->fire.x = x - 33;
-			mlx->fire.y = y - 45;
-		}
-		else if(y > 205 && y <= 410)
-		{
-			mlx->fire.x = x - 66;
-			mlx->fire.y = y - 90;
-		}
-		else if (y > 410 && y <= 480)
-		{
-			mlx->fire.x = x - 105;
-			mlx->fire.y = y - 135;
-		}
-		else
-		{
-			mlx->fire.x = x - 140;
-			mlx->fire.y = y - 180;
-		}*/
-		render(mlx);
-		//mlx_loop_hook(mlx->connection, fire_animation, mlx);
 	}
 	ft_putnbr(x);
 	ft_putchar('\n');

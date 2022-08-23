@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:30:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:37:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	render(t_mlx *mlx)
 	create_threads(mlx, &floor_raycasting);
 	create_threads(mlx, &wall_raycasting);
 	//create_threads(mlx, &objects);
-	wand(mlx);
 	fire(mlx);
+	wand(mlx);
 	mlx_put_image_to_window(mlx->connection, mlx->window,
 		mlx->image->image, 0, 0);
 }

@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/08/04 13:22:54 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/08/23 13:49:39 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_FILES = main.c \
 			key_events.c \
 			mouse_events.c \
 			skybox.c \
-			objects.c
+			objects.c \
+			animations.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 INCLUDES = -I ./minilibx -I ./libft
 LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
