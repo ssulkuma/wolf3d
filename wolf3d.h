@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 15:22:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:45:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -100,6 +100,7 @@ typedef struct s_mlx
 	t_vector	wand;
 	double		fire_scale;
 	int			click;
+	int			wand_done;
 }				t_mlx;
 
 typedef struct s_wall

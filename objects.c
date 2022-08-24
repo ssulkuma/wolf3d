@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 16:22:51 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:41:39 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	fire(t_mlx *mlx)
 	int		color;
 	int		scale;
 
-	if (mlx->click)
+	if (mlx->click && mlx->wand_done)
 	{
 		scale = get_fire_scale(mlx);
 		x = 0;

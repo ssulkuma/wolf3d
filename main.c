@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 13:52:55 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:44:07 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	init(t_mlx *mlx, t_player *player, t_image *screen, t_map *map)
 	screen->image = mlx_new_image(mlx->connection, WIDTH, HEIGHT);
 	screen->address = mlx_get_data_addr(screen->image, &screen->bits_per_pixel,
 			&screen->len, &screen->endian);
-	player->position.x = 1;
-	player->position.y = 1;
+	player->position.x = 2;
+	player->position.y = 2;
 	if (player->position.x < 1 || player->position.x > map->width
 		|| player->position.y < 1 || player->position.y > map->height)
 		error("Error: Player starting position outside of map bounds.");

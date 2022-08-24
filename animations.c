@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 16:25:42 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:49:59 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@ int	fire_animation(t_mlx *mlx)
 
 	if (duration < ANIMATION_DURATION && mlx->click == 1)
 	{
-		if (duration < ANIMATION_DURATION / 2)
+		if (duration < ANIMATION_DURATION * 0.25)
+			mlx->wand.x += 1;
+		else if (duration < ANIMATION_DURATION * 0.5)
+			mlx->wand.x -= 1;
+		else if (duration < ANIMATION_DURATION * 0.75)
+		{
+			mlx->wand_done = 1;
 			mlx->fire_scale += 1;
+		}
 		else
 			mlx->fire_scale -= 1;
 		render(mlx);
@@ -31,7 +38,9 @@ int	fire_animation(t_mlx *mlx)
 	else
 	{
 		mlx->fire_scale = 0;
+		mlx->wand.x = 340;
 		mlx->click = 0;
+		mlx->wand_done = 0;
 		duration = 0;
 		render(mlx);
 	}
