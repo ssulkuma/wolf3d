@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 13:59:23 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:03:48 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -25,7 +25,7 @@
 # define WIDTH 800
 # define HEIGHT 640
 # define BUFFER_SIZE 10
-# define THREADS 1
+# define THREADS 10
 # define ANIMATION_DURATION 50
 # define MAX_OBJECTS 50
 # define PI 3.141592654
@@ -100,6 +100,7 @@ typedef struct s_mlx
 	t_vector	fire;
 	t_vector	wand;
 	double		fire_scale;
+	double		depth[WIDTH];
 	int			click;
 	int			wand_done;
 	int			menu;
@@ -139,7 +140,6 @@ typedef struct s_floor
 
 typedef struct s_data
 {
-	double		depth[WIDTH];
 	int			start_x;
 	int			end_x;
 	int			start_y;
@@ -165,6 +165,10 @@ typedef struct s_object
 	t_vector	transform;
 	int			width;
 	int			height;
+	int			start_x;
+	int			end_x;
+	int			start_y;
+	int			end_y;
 	int			color;
 }				t_object;
 

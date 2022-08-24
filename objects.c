@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 10:41:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:03:45 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,34 @@ void	wand(t_mlx *mlx)
 		x++;
 	}
 }
-/*
+
 void	*objects(void *thread)
 {
 	t_data		*data;
 	t_object	object;
 	int			index;
+	int			x;
 
-	data = (t_data *)data;
+	data = (t_data *)thread;
 	index = 0;
 	while (index < data->mlx->map->object_count)
 	{
-		//printf("DEPTH %f\n", data->depth[index]);
+		object.sprite.x = object.position.x - data->player->position.x;
+		object.sprite.y = object.position.y - data->player->position.y;
+		object.transform.x = (1.0 / data->player->cam_plane.x * data->player->direction.y - data->player->direction.x * data->player->cam_plane.y) * (data->player->direction.y * object.sprite.x - data->player->direction.x * object.sprite.y);
+		object.transform.y = (1.0 / data->player->cam_plane.x * data->player->direction.y - data->player->direction.x * data->player->cam_    plane.y) * (-data->player->cam_plane.y * object.sprite.x + data->player->cam_plane.x * object.sprite.y);
+		object.height = abs((int)(HEIGHT / object.transform.y));
+		object.start_y = -object.height / 2 + HEIGHT / 2;
+		object.end_y = object.height / 2 + HEIGHT / 2;
+		object.start_x = -object.width / 2 + ((int)(WIDTH / 2) * (1 + object.transform.x / object.transform.y);
+		object.end_x = object.width / 2 + ((int)(WIDTH / 2) * (1 + object.transform.x / object.transform.y);
 		index++;
 	}
-}*/
+	x = 0;
+	while (x < WIDTH)
+	{
+		//printf("DEPTH %d %f\n", index, data->mlx->depth[x]);
+		x++;
+	}
+	pthread_exit(NULL);
+}

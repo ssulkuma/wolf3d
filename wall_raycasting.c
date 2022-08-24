@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:30:57 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:42:06 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static void	draw_walls(t_data *data, t_ray *ray, int x, t_image *texture)
 		tex_y += step;
 		y++;
 	}
-	data->depth[x] = ray->length;
+	data->mlx->depth[x] = ray->length;
 }
 
 /*This is where our raycasting begins. Cam_position represents what side
