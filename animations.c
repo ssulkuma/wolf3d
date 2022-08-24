@@ -6,16 +6,17 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 10:49:59 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:33:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
 /*A continues mlx loop that renders the image with every frame. Upon a mouse
- * click, increases scale value of fire texture to create an animation.*/
+ * click, moves wand texture and increases scale value of fire texture to create
+ * an animation.*/
 
-int	fire_animation(t_mlx *mlx)
+int	spell_cast_animation(t_mlx *mlx)
 {
 	static int	duration;
 
@@ -27,6 +28,7 @@ int	fire_animation(t_mlx *mlx)
 			mlx->wand.x -= 1;
 		else if (duration < ANIMATION_DURATION * 0.75)
 		{
+			mlx->wand.x = 340;
 			mlx->wand_done = 1;
 			mlx->fire_scale += 1;
 		}
@@ -38,7 +40,6 @@ int	fire_animation(t_mlx *mlx)
 	else
 	{
 		mlx->fire_scale = 0;
-		mlx->wand.x = 340;
 		mlx->click = 0;
 		mlx->wand_done = 0;
 		duration = 0;
