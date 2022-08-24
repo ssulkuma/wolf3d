@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 10:45:49 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:59:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -25,7 +25,7 @@
 # define WIDTH 800
 # define HEIGHT 640
 # define BUFFER_SIZE 10
-# define THREADS 10
+# define THREADS 1
 # define ANIMATION_DURATION 50
 # define MAX_OBJECTS 50
 # define PI 3.141592654
@@ -49,6 +49,7 @@
 # define TEX_11 "./textures/11.xpm"
 
 # define ESC_KEY 53
+# define M_KEY 46
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define ARROW_DOWN 125
@@ -101,6 +102,7 @@ typedef struct s_mlx
 	double		fire_scale;
 	int			click;
 	int			wand_done;
+	int			menu;
 }				t_mlx;
 
 typedef struct s_wall
@@ -187,7 +189,6 @@ int		get_pixel_from_image(t_image *texture, int x, int y);
 int		key_events(int key_code, t_mlx *mlx);
 int		mouse_events(int button, int x, int y, t_mlx *mlx);
 int		close_window_event(t_mlx *mlx);
-int		wand_animation(t_mlx *mlx);
-int		fire_animation(t_mlx *mlx);
+int		spell_cast_animation(t_mlx *mlx);
 
 #endif

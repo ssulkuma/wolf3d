@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 16:33:14 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:12:00 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,28 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 
 void	render(t_mlx *mlx)
 {
+	char	*menu[4];
+	int		index;
+
+	menu[0] = "C O N T R O L S";
+	menu[1] = "[arrows] move";
+	menu[2] = "[mouse] cast a spell";
+	menu[3] = "[M] close menu";
 	create_threads(mlx, &skybox);
 	create_threads(mlx, &floor_raycasting);
 	create_threads(mlx, &wall_raycasting);
-	//create_threads(mlx, &objects);
+	create_threads(mlx, &objects);
 	fire(mlx);
 	wand(mlx);
 	mlx_put_image_to_window(mlx->connection, mlx->window,
 		mlx->image->image, 0, 0);
+	if (mlx->menu)
+	{
+		index = -1;
+		while (++index < 4)
+			mlx_string_put(mlx->connection, mlx->window, 100,
+					200 + (index * 20), 0xFFFFFF, menu[index]);
+	}
+	else
+		mlx_string_put(mlx->connection, mlx->window, 700, 610, 0xFFFFFF, "[M] MENU");
 }
