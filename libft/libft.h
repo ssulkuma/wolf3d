@@ -6,7 +6,7 @@
 /*   By: ssulkuma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 11:50:16 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/04/04 11:58:52 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:09:16 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		ft_isupper(int c);
 int		ft_islower(int c);
 int		ft_isblank(int c);
 int		ft_isgraph(int c);
+int		ft_abs(int n);
 double	ft_fabs(double n);
 
 typedef struct s_list
