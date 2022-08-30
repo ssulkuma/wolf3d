@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:09:05 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 14:42:06 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:44:29 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ x-axis or the y-axis. As well as the step within the starting grid to reach
 first x-side or y-side. Ray.step will be used later to determine which grid
 position on the map we're going move next, following the ray direction.*/
 
-static void	ray_steps(t_data *data, t_ray *ray)
+void	ray_steps(t_data *data, t_ray *ray)
 {
 	ray->delta.x = ft_fabs(1.0 / ray->direction.x);
 	ray->delta.y = ft_fabs(1.0 / ray->direction.y);

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/29 16:17:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:44:13 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -163,14 +163,13 @@ typedef struct s_object
 	t_vector	position;
 	t_vector	distance;
 	t_vector	transform;
+	double		inverse;
 	int			hit;
-	int			width;
+	int			texture;
 	int			height;
 	int			start_x;
-	int			end_x;
 	int			start_y;
 	int			end_y;
-	int			color;
 }				t_object;
 
 void	error(const char *str);
@@ -185,6 +184,7 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	render(t_mlx *mlx);
 void	create_threads(t_mlx *mlx, void *(*function)(void *));
 void	draw_wall_raycasting(t_data *mlx, int x, t_image *texture);
+void	ray_steps(t_data *data, t_ray *ray);
 void	*floor_raycasting(void *thread);
 void	*skybox(void *thread);
 void	*objects(void *thread);
