@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 14:12:00 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:01:31 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,9 @@ void	render(t_mlx *mlx)
 		index = -1;
 		while (++index < 4)
 			mlx_string_put(mlx->connection, mlx->window, 100,
-					200 + (index * 20), 0xFFFFFF, menu[index]);
+				200 + (index * 20), 0xFFFFFF, menu[index]);
 	}
 	else
-		mlx_string_put(mlx->connection, mlx->window, 700, 610, 0xFFFFFF, "[M] MENU");
+		mlx_string_put(mlx->connection, mlx->window,
+			700, 610, 0xFFFFFF, "[M] MENU");
 }

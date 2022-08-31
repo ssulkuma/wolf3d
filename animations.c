@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/30 12:57:27 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:58:56 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	spell_cast_animation(t_mlx *mlx)
 {
 	static int	duration;
 
-	if (duration < ANIMATION_DURATION && mlx->click == 1)
+	if (duration++ < ANIMATION_DURATION && mlx->click == 1)
 	{
 		if (duration < ANIMATION_DURATION * 0.25)
 			mlx->wand.x += 1;
@@ -35,16 +35,13 @@ int	spell_cast_animation(t_mlx *mlx)
 		else
 			mlx->fire_scale -= 1;
 		render(mlx);
-		duration++;
+		return (0);
 	}
-	else
-	{
-		mlx->fire_scale = 0;
-		mlx->click = 0;
-		mlx->wand_done = 0;
-		duration = 0;
-		render(mlx);
-	}
+	mlx->fire_scale = 0;
+	mlx->click = 0;
+	mlx->wand_done = 0;
+	duration = 0;
+	render(mlx);
 	return (0);
 }
 

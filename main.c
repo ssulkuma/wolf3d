@@ -6,11 +6,31 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/24 13:59:40 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:09:34 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*Initializes the struct variables for starting position of player, wand
+ * placement and other needed information.*/
+
+static void	init_helper(t_mlx *mlx, t_player *player)
+{
+	player->direction.x = -1;
+	player->direction.y = 0;
+	player->cam_plane.x = 0;
+	player->cam_plane.y = 0.66;
+	player->move_speed = 0.3;
+	player->turn_speed = 0.075;
+	mlx->fire.x = 0;
+	mlx->fire.y = 0;
+	mlx->wand.x = 340;
+	mlx->wand.y = 512;
+	mlx->fire_scale = 0.0;
+	mlx->click = 0;
+	mlx->menu = 0;
+}
 
 /*Initializes the struct variables needed to open a graphic window and the
  * starting position for player.*/
@@ -31,19 +51,7 @@ static void	init(t_mlx *mlx, t_player *player, t_image *screen, t_map *map)
 	if (player->position.x < 1 || player->position.x > map->width
 		|| player->position.y < 1 || player->position.y > map->height)
 		error("Error: Player starting position outside of map bounds.");
-	player->direction.x = -1;
-	player->direction.y = 0;
-	player->cam_plane.x = 0;
-	player->cam_plane.y = 0.66;
-	player->move_speed = 0.3;
-	player->turn_speed = 0.075;
-	mlx->fire.x = 0;
-	mlx->fire.y = 0;
-	mlx->wand.x = 340;
-	mlx->wand.y = 512;
-	mlx->fire_scale = 0.0;
-	mlx->click = 0;
-	mlx->menu = 0;
+	init_helper(mlx, player);
 }
 
 /*Displays usage message in case of misusage. List of event hooks.*/
