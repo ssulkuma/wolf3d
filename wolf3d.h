@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/30 14:44:13 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:47:13 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -17,17 +17,14 @@
 
 # include <stdio.h>
 # include <fcntl.h>
-# include <string.h>
-# include <unistd.h>
 # include <math.h>
 # include <pthread.h>
 
 # define WIDTH 800
 # define HEIGHT 640
 # define BUFFER_SIZE 10
-# define THREADS 1
+# define THREADS 10
 # define ANIMATION_DURATION 50
-# define MAX_OBJECTS 50
 # define PI 3.141592654
 
 # define TEX_WIDTH 64
