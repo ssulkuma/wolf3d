@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/30 14:58:18 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:55:07 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ static int	dda_algorithm(t_data *data, t_ray *ray, t_object *object)
 
 static void	object_calculations(t_data *data, t_ray *ray, t_object *object)
 {
+	if ((ray->grid.x - ray->delta.x) > (ray->grid.y - ray->delta.y))
+		ray->length = ray->grid.x - ray->delta.x;
+	else
+		ray->length = ray->grid.y - ray->delta.y;
+	printf("RAY %f\n", ray->length);
 	object->distance.x = object->position.x - data->player->position.x;
 	object->distance.y = object->position.y - data->player->position.y;
-	object->inverse = (1 / data->player->cam_plane.x * data->player->direction.y
+	object->inverse = 1 / (data->player->cam_plane.x * data->player->direction.y
 			- data->player->direction.x * data->player->cam_plane.y);
 	object->transform.x = object->inverse * (data->player->direction.y
 			* object->distance.x - data->player->direction.x
@@ -58,18 +63,16 @@ static void	object_calculations(t_data *data, t_ray *ray, t_object *object)
 			* object->distance.x + data->player->cam_plane.x
 			* object->distance.y);
 	object->height = ft_abs((int)(HEIGHT / object->transform.y)) / 2;
-	object->start_y = -object->height / 2 + HEIGHT / 2;
+	object->start_y = (-object->height / 2 + HEIGHT / 2)
+		+ TEX_HEIGHT / object->transform.y;
 	if (object->start_y < 0)
 		object->start_y = 0;
-	object->end_y = object->height / 2 + HEIGHT / 2;
+	object->end_y = (object->height / 2 + HEIGHT / 2)
+		+ TEX_HEIGHT / object->transform.y;
 	if (object->end_y > HEIGHT - 1)
 		object->end_y = HEIGHT - 1;
 	object->start_x = (-object->height / 2) + ((int)(WIDTH / 2)
 			*(1 + object->transform.x / object->transform.y));
-	if ((ray->grid.x - ray->delta.x) > (ray->grid.y - ray->delta.y))
-		ray->length = ray->grid.x - ray->delta.x;
-	else
-		ray->length = ray->grid.y - ray->delta.y;
 }
 
 /*Draws object if ray to object is shorter than to wall.*/
@@ -104,7 +107,7 @@ static void	draw_objects(t_data *data, int x, t_object *object, t_ray *ray)
  * is the right side. Knowing this we can calculate the direction where the
  * ray is being cast.*/
 
-static void	draw_object_raycasting(t_data *data, int x)
+static void	object_raycasting(t_data *data, int x)
 {
 	double		cam_position;
 	t_ray		ray;
@@ -143,7 +146,7 @@ void	*objects(void *thread)
 	x = data->start_x;
 	while (x < data->end_x)
 	{
-		draw_object_raycasting(data, x);
+		object_raycasting(data, x);
 		x++;
 	}
 	pthread_exit(NULL);
