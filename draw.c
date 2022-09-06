@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:00 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:01:31 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:54:03 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	create_threads(t_mlx *mlx, void *(*function)(void *))
 
 /*This is where the image rendering happens. Sends the correct function pointers
  * to the multithreading function in the right order and after each part is
- * done, puts the image to the window.*/
+ * done, puts the image to the window. Holds menu information and puts it to
+ * the image.*/
 
 void	render(t_mlx *mlx)
 {

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:22:07 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 15:56:10 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:15:03 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	count_objects_in_map(char *saved_map, t_map *map)
 			map->object_count++;
 		index++;
 	}
-	printf("OBJ COUNT %d\n", map->object_count);
 }
 
 /*Checks that the map file only consists of digits, newlines and single commas

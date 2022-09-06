@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:09:34 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/06 10:59:27 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,19 @@ static void	init(t_mlx *mlx, t_player *player, t_image *screen, t_map *map)
 	init_helper(mlx, player);
 }
 
-/*Displays usage message in case of misusage. List of event hooks.*/
+/*List of mlx hooks that are triggered by certain events. Calls the function
+ * for the continues loop, which renders the image each frame.*/
+
+static void	hooks(t_mlx *mlx)
+{
+	mlx_hook(mlx->window, 2, 0, key_events, mlx);
+	mlx_hook(mlx->window, 4, 0, mouse_events, mlx);
+	mlx_hook(mlx->window, 17, 0, close_window_event, mlx);
+	mlx_loop_hook(mlx->connection, spell_cast_animation, mlx);
+	mlx_loop(mlx->connection);
+}
+
+/*Start of program. Displays usage message in case of misusage.*/
 
 int	main(int argc, char **argv)
 {
@@ -71,16 +83,12 @@ int	main(int argc, char **argv)
 	}
 	read_map(argv[1], &map);
 	init(&mlx, &player, &image, &map);
-	mlx.image = &image;
 	get_textures(texture);
+	mlx.image = &image;
 	mlx.texture = texture;
 	mlx.map = &map;
 	mlx.player = &player;
 	render(&mlx);
-	mlx_hook(mlx.window, 2, 0, key_events, &mlx);
-	mlx_hook(mlx.window, 4, 0, mouse_events, &mlx);
-	mlx_hook(mlx.window, 17, 0, close_window_event, &mlx);
-	mlx_loop_hook(mlx.connection, spell_cast_animation, &mlx);
-	mlx_loop(mlx.connection);
+	hooks(&mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/03 13:40:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:14:49 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void	read_file(int file, t_map *map, char *saved_map)
 		free(buff);
 		free(saved_map);
 		if (!temp)
-			return ;
+			error("Error: Couldn't get map information.");
 		saved_map = ft_strdup(temp);
 		free(temp);
 	}
