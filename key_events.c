@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/05 11:56:08 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:29:24 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ static void	rotate_left(t_mlx *mlx)
 
 static void	move_backwards(t_mlx *mlx)
 {
-	double		next_backward_x;
-	double		next_backward_y;
+	double		next_x;
+	double		next_y;
 
-	next_backward_x = mlx->player->position.x - mlx->player->direction.x
+	next_x = mlx->player->position.x - mlx->player->direction.x
 		* mlx->player->move_speed;
-	next_backward_y = mlx->player->position.y - mlx->player->direction.y
+	next_y = mlx->player->position.y - mlx->player->direction.y
 		* mlx->player->move_speed;
-	if (next_backward_x < 0.0 || next_backward_x >= mlx->map->width
-		|| next_backward_y < 0.0 || next_backward_y >= mlx->map->height)
+	if (next_x < 0.0 || next_x >= mlx->map->width
+		|| next_y < 0.0 || next_y >= mlx->map->height)
 		return ;
-	if (mlx->map->matrix[(int)next_backward_x][(int)mlx->player->position.y] != 1)
+	if (mlx->map->matrix[(int)next_x][(int)mlx->player->position.y] != 1)
 		mlx->player->position.x -= mlx->player->direction.x
 			* mlx->player->move_speed;
-	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_backward_y] != 1)
+	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_y] != 1)
 		mlx->player->position.y -= mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
@@ -94,20 +94,20 @@ static void	move_backwards(t_mlx *mlx)
 
 static void	move_forward(t_mlx *mlx)
 {
-	double		next_forward_x;
-	double		next_forward_y;
+	double		next_x;
+	double		next_y;
 
-	next_forward_x = mlx->player->position.x + mlx->player->direction.x
+	next_x = mlx->player->position.x + mlx->player->direction.x
 		* mlx->player->move_speed;
-	next_forward_y = mlx->player->position.y + mlx->player->direction.y
+	next_y = mlx->player->position.y + mlx->player->direction.y
 		* mlx->player->move_speed;
-	if (next_forward_x < 0.0 || next_forward_x >= mlx->map->width
-		| next_forward_y < 0.0 || next_forward_y >= mlx->map->height)
+	if (next_x < 0.0 || next_x >= mlx->map->width
+		| next_y < 0.0 || next_y >= mlx->map->height)
 		return ;
-	if (mlx->map->matrix[(int)next_forward_x][(int)mlx->player->position.y] != 1)
+	if (mlx->map->matrix[(int)next_x][(int)mlx->player->position.y] != 1)
 		mlx->player->position.x += mlx->player->direction.x
 			* mlx->player->move_speed;
-	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_forward_y] != 1)
+	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_y] != 1)
 		mlx->player->position.y += mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
