@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:29 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/07/06 14:49:03 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:43:10 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	error(const char *str)
 
 void	buff_error(char *saved_map, int file)
 {
+	int		closing;
+
 	free(saved_map);
-	close(file);
+	closing = close(file);
+	if (closing == -1)
+		error("Error: Unable to close file and get map info.");
 	error("Error: Couldn't get map information.");
 }
 

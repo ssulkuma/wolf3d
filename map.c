@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:37:20 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/06 11:14:49 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:21:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ static void	matrix_help(int height, t_map *map, char *saved_map, char **matrix)
  * matrix size, before allocating enough memory for the 2D int array,
  * where the map information is stored to be used later on when drawing.*/
 
-static void	create_matrix(char *saved_map, t_map *map, int file)
+static void	create_matrix(char *saved_map, t_map *map)
 {
 	char	**matrix;
 	int		height;
 
-	close(file);
 	check_map_characters(saved_map);
 	count_objects_in_map(saved_map, map);
 	matrix = ft_strsplit(saved_map, '\n');
@@ -112,7 +111,7 @@ static void	read_file(int file, t_map *map, char *saved_map)
 		free(temp);
 	}
 	free(buff);
-	create_matrix(saved_map, map, file);
+	create_matrix(saved_map, map);
 	free(saved_map);
 }
 
@@ -122,6 +121,7 @@ static void	read_file(int file, t_map *map, char *saved_map)
 void	read_map(char *map_file, t_map *map)
 {
 	int		file;
+	int		closing;
 	char	*saved_map;
 
 	file = open(map_file, O_RDONLY);
@@ -130,10 +130,13 @@ void	read_map(char *map_file, t_map *map)
 	saved_map = ft_strnew(1);
 	if (!saved_map)
 	{
-		close(file);
+		closing = close(file);
+		if (closing == -1)
+			error("Error: Unable to close file and get map info.");
 		error("Error: Couldn't get map information.");
 	}
 	read_file(file, map, saved_map);
-	if (file)
-		close(file);
+	closing = close(file);
+	if (closing == -1)
+		error("Error: Unable to close file.");
 }
