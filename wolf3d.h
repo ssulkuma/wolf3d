@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:47:13 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:19:43 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -41,7 +41,7 @@
 # define TEX_6 "./textures/05.xpm"
 # define TEX_7 "./textures/07.xpm"
 # define TEX_8 "./textures/08.xpm"
-# define TEX_9 "./textures/barrel.xpm"
+# define TEX_9 "./textures/09.xpm"
 # define TEX_10 "./textures/10.xpm"
 # define TEX_11 "./textures/11.xpm"
 
