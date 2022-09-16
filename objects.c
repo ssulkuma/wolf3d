@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/06 14:55:07 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:19:09 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	dda_algorithm(t_data *data, t_ray *ray, t_object *object)
 		|| data->map->matrix[ray->map_x][ray->map_y] == 3
 		|| data->map->matrix[ray->map_x][ray->map_y] == 4)
 	{
-		object->texture = data->map->matrix[ray->map_x][ray->map_y] + 5;
+		object->texture = data->map->matrix[ray->map_x][ray->map_y] + 4;
 		return (1);
 	}
 	return (0);

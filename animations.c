@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/31 14:58:56 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:20:02 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	fire(t_mlx *mlx)
 			y = 0;
 			while (y < TEX_HEIGHT * scale)
 			{
-				color = get_pixel_from_image(&mlx->texture[11], x / scale,
+				color = get_pixel_from_image(&mlx->texture[10], x / scale,
 						y / scale);
 				if (color != 0x000000)
 					draw_pixel_to_image(mlx, mlx->fire.x - (33 * scale) + x,
@@ -105,7 +105,7 @@ void	wand(t_mlx *mlx)
 		y = 0;
 		while (y < TEX_HEIGHT * 2)
 		{
-			color = get_pixel_from_image(&mlx->texture[10], x * 0.5, y * 0.5);
+			color = get_pixel_from_image(&mlx->texture[9], x * 0.5, y * 0.5);
 			if (color != 0x000000)
 				draw_pixel_to_image(mlx, mlx->wand.x + x,
 					mlx->wand.y + y, color);

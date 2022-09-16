@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/13 13:42:41 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:28:35 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -31,19 +31,18 @@
 # define TEX_HEIGHT 64
 # define SKYBOX_TEX_WIDTH 800
 # define SKYBOX_TEX_HEIGHT 200
-# define MAX_TEXTURES 12
+# define MAX_TEXTURES 11
 # define TEX_0 "./textures/00.xpm"
 # define TEX_1 "./textures/01.xpm"
 # define TEX_2 "./textures/02.xpm"
 # define TEX_3 "./textures/03.xpm"
 # define TEX_4 "./textures/04.xpm"
 # define TEX_5 "./textures/05.xpm"
-# define TEX_6 "./textures/05.xpm"
+# define TEX_6 "./textures/06.xpm"
 # define TEX_7 "./textures/07.xpm"
 # define TEX_8 "./textures/08.xpm"
 # define TEX_9 "./textures/09.xpm"
 # define TEX_10 "./textures/10.xpm"
-# define TEX_11 "./textures/11.xpm"
 
 # define ESC_KEY 53
 # define M_KEY 46

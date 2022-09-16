@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:53:13 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/04 14:58:39 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:35:41 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static void	skybox_textures(t_image *texture)
 	texture[5].image = mlx_xpm_file_to_image(&texture[5], TEX_5, &x, &y);
 	texture[5].address = mlx_get_data_addr(texture[5].image,
 			&texture[5].bits_per_pixel, &texture[5].len, &texture[5].endian);
-	texture[6].image = mlx_xpm_file_to_image(&texture[5], TEX_6, &x, &y);
-	texture[6].address = mlx_get_data_addr(texture[6].image,
-			&texture[6].bits_per_pixel, &texture[6].len, &texture[6].endian);
 }
 
 static void	object_textures(t_image *texture)
@@ -58,6 +55,9 @@ static void	object_textures(t_image *texture)
 
 	x = TEX_WIDTH;
 	y = TEX_HEIGHT;
+	texture[6].image = mlx_xpm_file_to_image(&texture[6], TEX_6, &x, &y);
+	texture[6].address = mlx_get_data_addr(texture[6].image,
+			&texture[6].bits_per_pixel, &texture[6].len, &texture[6].endian);
 	texture[7].image = mlx_xpm_file_to_image(&texture[7], TEX_7, &x, &y);
 	texture[7].address = mlx_get_data_addr(texture[7].image,
 			&texture[7].bits_per_pixel, &texture[7].len, &texture[7].endian);
@@ -70,9 +70,6 @@ static void	object_textures(t_image *texture)
 	texture[10].image = mlx_xpm_file_to_image(&texture[10], TEX_10, &x, &y);
 	texture[10].address = mlx_get_data_addr(texture[10].image,
 			&texture[10].bits_per_pixel, &texture[10].len, &texture[10].endian);
-	texture[11].image = mlx_xpm_file_to_image(&texture[11], TEX_11, &x, &y);
-	texture[11].address = mlx_get_data_addr(texture[11].image,
-			&texture[11].bits_per_pixel, &texture[11].len, &texture[11].endian);
 }
 
 /*Saves the texture information to an image from a .xpm file.*/
