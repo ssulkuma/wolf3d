@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/08/23 13:49:39 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/09/19 10:34:05 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ SRC_FILES = main.c \
 			objects.c \
 			animations.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
-INCLUDES = -I ./minilibx -I ./libft
-LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
+INCLUDES = -I /usr/local/include -I ./libft
+LIB = -L /usr/local/lib -lmlx -L ./libft -lft -lpthread
+HOME_INCLUDES = -I ./minilibx -I ./libft
+HOME_LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
 FLAGS = -Wall -Wextra -Werror -O3
 FRAMEWORK = -framework OpenGL -framework AppKit
 HEADER = wolf3d.h
@@ -49,3 +51,8 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+home: $(OBJ_FILES) $(HEADER)
+	make -C ./libft
+	gcc $(FLAGS) -c $(SRC_FILES) $(HOME_INCLUDES)
+	gcc $(FLAGS) -o $(NAME) $(OBJ_FILES) $(HOME_LIB) $(FRAMEWORK)
