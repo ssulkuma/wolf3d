@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:03:59 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/08/23 16:34:46 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:33:06 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@ int	mouse_events(int button, int x, int y, t_mlx *mlx)
 {
 	if (button == MOUSE_LEFT)
 	{
-		mlx->click += 1;
+		mlx->click = 1;
 		mlx->fire.x = x;
 		mlx->fire.y = y;
 	}
-	ft_putnbr(x);
-	ft_putchar('\n');
-	ft_putnbr(y);
-	ft_putchar('\n');
 	return (0);
 }
