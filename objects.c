@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/16 13:19:09 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:11:26 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	object_calculations(t_data *data, t_ray *ray, t_object *object)
 		ray->length = ray->grid.x - ray->delta.x;
 	else
 		ray->length = ray->grid.y - ray->delta.y;
-	printf("RAY %f\n", ray->length);
 	object->distance.x = object->position.x - data->player->position.x;
 	object->distance.y = object->position.y - data->player->position.y;
 	object->inverse = 1 / (data->player->cam_plane.x * data->player->direction.y
@@ -102,6 +101,27 @@ static void	draw_objects(t_data *data, int x, t_object *object, t_ray *ray)
 	}
 }
 
+static void	recursive_dda(t_data *data, t_ray *ray, int x)
+{
+	t_ray 		current_ray;
+	t_object	current_object;
+
+	current_object.hit = 0;
+	while (!current_object.hit)
+		current_object.hit = dda_algorithm(data, ray, &current_object);
+	ft_memcpy(&current_ray, ray, sizeof(t_ray));
+	if (current_object.hit == 1)
+	{
+		current_object.position.x = ray->map_x + 0.5;
+		current_object.position.y = ray->map_y + 0.5;
+		recursive_dda(data, ray, x);
+	}
+	if (current_object.hit == -1)
+		return ;
+	object_calculations(data, &current_ray, &current_object);
+	draw_objects(data, x, &current_object, &current_ray);
+}
+
 /*This is where our raycasting begins. Cam_position represents what side
  * of the screen we're at on the x-axis. -1 is the left side, 0 center and 1
  * is the right side. Knowing this we can calculate the direction where the
@@ -111,7 +131,6 @@ static void	object_raycasting(t_data *data, int x)
 {
 	double		cam_position;
 	t_ray		ray;
-	t_object	object;
 
 	cam_position = 2.0 * x / (double)WIDTH - 1.0;
 	ray.direction.x = data->player->direction.x
@@ -121,18 +140,7 @@ static void	object_raycasting(t_data *data, int x)
 	ray.map_x = data->player->position.x;
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);
-	object.hit = 0;
-	while (!object.hit)
-		object.hit = dda_algorithm(data, &ray, &object);
-	if (object.hit == 1)
-	{
-		object.position.x = ray.map_x + 0.5;
-		object.position.y = ray.map_y + 0.5;
-	}
-	if (object.hit == -1)
-		return ;
-	object_calculations(data, &ray, &object);
-	draw_objects(data, x, &object, &ray);
+	recursive_dda(data, &ray, x);
 }
 
 /*Iterates through every pixel on the x-axis of the thread.*/
