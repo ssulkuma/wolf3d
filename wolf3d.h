@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/22 11:01:01 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:58:40 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef WOLF3D_H
@@ -180,7 +180,9 @@ void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	render(t_mlx *mlx);
 void	create_threads(t_mlx *mlx, void *(*function)(void *));
 void	draw_wall_raycasting(t_data *mlx, int x, t_image *texture);
+void	object_raycasting(t_data *data, int x);
 void	ray_steps(t_data *data, t_ray *ray);
+void	*wall_raycasting(void *thread);
 void	*floor_raycasting(void *thread);
 void	*skybox(void *thread);
 void	*objects(void *thread);

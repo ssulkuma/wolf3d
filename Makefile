@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/09/22 11:14:28 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/09/22 14:14:26 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,15 @@ SRC_FILES = main.c \
 			map_checker.c \
 			error.c \
 			textures.c \
-			draw.c \
+			draw_utils.c \
 			wall_raycasting.c \
 			floor_raycasting.c \
 			key_events.c \
 			mouse_events.c \
 			skybox.c \
 			objects.c \
-			animations.c
+			animations.c \
+			render.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 INCLUDES = -I /usr/local/include -I ./libft
 LIB = -L /usr/local/lib -lmlx -L ./libft -lft -lpthread

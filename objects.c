@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/22 12:11:26 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:15:22 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,12 @@ static void	draw_objects(t_data *data, int x, t_object *object, t_ray *ray)
 	}
 }
 
+/*A recursive dda function to draw all the objects in an order from the
+ * furthest to the closest.*/
+
 static void	recursive_dda(t_data *data, t_ray *ray, int x)
 {
-	t_ray 		current_ray;
+	t_ray		current_ray;
 	t_object	current_object;
 
 	current_object.hit = 0;
@@ -127,7 +130,7 @@ static void	recursive_dda(t_data *data, t_ray *ray, int x)
  * is the right side. Knowing this we can calculate the direction where the
  * ray is being cast.*/
 
-static void	object_raycasting(t_data *data, int x)
+void	object_raycasting(t_data *data, int x)
 {
 	double		cam_position;
 	t_ray		ray;
@@ -141,21 +144,4 @@ static void	object_raycasting(t_data *data, int x)
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);
 	recursive_dda(data, &ray, x);
-}
-
-/*Iterates through every pixel on the x-axis of the thread.*/
-
-void	*objects(void *thread)
-{
-	t_data		*data;
-	int			x;
-
-	data = (t_data *)thread;
-	x = data->start_x;
-	while (x < data->end_x)
-	{
-		object_raycasting(data, x);
-		x++;
-	}
-	pthread_exit(NULL);
 }
