@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:33:31 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/22 14:15:22 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:40:47 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static void	object_calculations(t_data *data, t_ray *ray, t_object *object)
 			* object->distance.y);
 	object->height = ft_abs((int)(HEIGHT / object->transform.y)) / 2;
 	object->start_y = (-object->height / 2 + HEIGHT / 2)
-		+ TEX_HEIGHT / object->transform.y;
+		+ (TEX_HEIGHT * 2) / object->transform.y;
 	if (object->start_y < 0)
 		object->start_y = 0;
 	object->end_y = (object->height / 2 + HEIGHT / 2)
-		+ TEX_HEIGHT / object->transform.y;
+		+ (TEX_HEIGHT * 2) / object->transform.y;
 	if (object->end_y > HEIGHT - 1)
 		object->end_y = HEIGHT - 1;
 	object->start_x = (-object->height / 2) + ((int)(WIDTH / 2)
