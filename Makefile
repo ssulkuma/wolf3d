@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/09/19 10:34:05 by ssulkuma         ###   ########.fr        #
+#    Updated: 2022/09/22 11:14:28 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ FLAGS = -Wall -Wextra -Werror -O3
 FRAMEWORK = -framework OpenGL -framework AppKit
 HEADER = wolf3d.h
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re home
 
 all: $(NAME)
 
