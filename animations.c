@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:39:58 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/16 13:20:02 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:00:02 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * click, moves wand texture and increases scale value of fire texture to create
  * an animation.*/
 
-int	spell_cast_animation(t_mlx *mlx)
+int	frame_loop(t_mlx *mlx)
 {
 	static int	duration;
 

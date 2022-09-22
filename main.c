@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:53:53 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/06 10:59:27 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:00:23 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	hooks(t_mlx *mlx)
 	mlx_hook(mlx->window, 2, 0, key_events, mlx);
 	mlx_hook(mlx->window, 4, 0, mouse_events, mlx);
 	mlx_hook(mlx->window, 17, 0, close_window_event, mlx);
-	mlx_loop_hook(mlx->connection, spell_cast_animation, mlx);
+	mlx_loop_hook(mlx->connection, frame_loop, mlx);
 	mlx_loop(mlx->connection);
 }
 
@@ -81,9 +81,9 @@ int	main(int argc, char **argv)
 		ft_putendl("Usage: ./wolf3d [map]");
 		return (1);
 	}
+	get_textures(texture);
 	read_map(argv[1], &map);
 	init(&mlx, &player, &image, &map);
-	get_textures(texture);
 	mlx.image = &image;
 	mlx.texture = texture;
 	mlx.map = &map;
