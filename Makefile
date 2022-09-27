@@ -26,13 +26,21 @@ SRC_FILES = main.c \
 			animations.c \
 			render.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
-INCLUDES = -I /usr/local/include -I ./libft
-LIB = -L /usr/local/lib -lmlx -L ./libft -lft -lpthread
+HIVE_INCLUDES = -I /usr/local/include -I ./libft
+HIVE_LIB = -L /usr/local/lib -lmlx -L ./libft -lft -lpthread
 HOME_INCLUDES = -I ./minilibx -I ./libft
 HOME_LIB = -L ./minilibx -lmlx -L ./libft -lft -lpthread
 FLAGS = -Wall -Wextra -Werror -O3
 FRAMEWORK = -framework OpenGL -framework AppKit
 HEADER = wolf3d.h
+
+ifeq ($(MAKECMDGOALS),home)
+	LIB = $(HOME_LIB)
+	INCLUDES = $(HOME_INCLUDES)
+else
+	LIB = $(HIVE_LIB)
+	INCLUDES = $(HIVE_INCLUDES)
+endif
 
 .PHONY: all clean fclean re home
 
@@ -53,7 +61,4 @@ fclean: clean
 
 re: fclean all
 
-home: $(OBJ_FILES) $(HEADER)
-	make -C ./libft
-	gcc $(FLAGS) -c $(SRC_FILES) $(HOME_INCLUDES)
-	gcc $(FLAGS) -o $(NAME) $(OBJ_FILES) $(HOME_LIB) $(FRAMEWORK)
+home: $(NAME)
