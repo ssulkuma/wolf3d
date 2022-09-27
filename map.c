@@ -67,7 +67,6 @@ static void	create_matrix(char *saved_map, t_map *map)
 	int		height;
 
 	check_map_characters(saved_map);
-	count_objects_in_map(saved_map, map);
 	matrix = ft_strsplit(saved_map, '\n');
 	if (!matrix)
 		matrix_error(matrix, saved_map, -1);

@@ -175,7 +175,6 @@ void	matrix_error(char **matrix, char *saved_map, int index);
 void	read_map(char *map_file, t_map *map);
 void	check_map_characters(char *saved_map);
 void	check_map_size(char **matrix, t_map *map);
-void	count_objects_in_map(char *saved_map, t_map *map);
 void	get_textures(t_image *texture);
 void	draw_pixel_to_image(t_mlx *mlx, int x, int y, int color);
 void	render(t_mlx *mlx);

@@ -12,26 +12,6 @@
 
 #include "wolf3d.h"
 
-/*Counts how many objects are within the map. Objects are represented as 2, 3
- * and 4 in the map.*/
-
-void	count_objects_in_map(char *saved_map, t_map *map)
-{
-	int		index;
-
-	map->object_count = 0;
-	index = 0;
-	while (saved_map[index] != '\0')
-	{
-		if ((saved_map[index] >= '2' && saved_map[index] <= '4')
-			&& (saved_map[index + 1] == ',' || saved_map[index + 1] == '\n'
-				|| saved_map[index + 1] == '\0') && (saved_map[index - 1] == ','
-				|| saved_map[index - 1] == '\n' || index == 0))
-			map->object_count++;
-		index++;
-	}
-}
-
 /*Checks that the map file only consists of digits, newlines and single commas
  * between the digits.*/
 
