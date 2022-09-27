@@ -15,7 +15,6 @@
 # include "./libft/libft.h"
 # include "./minilibx/mlx.h"
 
-# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # include <pthread.h>
