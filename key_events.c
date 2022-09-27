@@ -79,10 +79,10 @@ static void	move_backwards(t_mlx *mlx)
 	if (next_x < 0.0 || next_x >= mlx->map->width
 		|| next_y < 0.0 || next_y >= mlx->map->height)
 		return ;
-	if (mlx->map->matrix[(int)next_x][(int)mlx->player->position.y] != 1)
+	if (mlx->map->matrix[(int)mlx->player->position.y][(int)next_x] != 1)
 		mlx->player->position.x -= mlx->player->direction.x
 			* mlx->player->move_speed;
-	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_y] != 1)
+	if (mlx->map->matrix[(int)next_y][(int)mlx->player->position.x] != 1)
 		mlx->player->position.y -= mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));
@@ -104,10 +104,10 @@ static void	move_forward(t_mlx *mlx)
 	if (next_x < 0.0 || next_x >= mlx->map->width
 		| next_y < 0.0 || next_y >= mlx->map->height)
 		return ;
-	if (mlx->map->matrix[(int)next_x][(int)mlx->player->position.y] != 1)
+	if (mlx->map->matrix[(int)mlx->player->position.y][(int)next_x] != 1)
 		mlx->player->position.x += mlx->player->direction.x
 			* mlx->player->move_speed;
-	if (mlx->map->matrix[(int)mlx->player->position.x][(int)next_y] != 1)
+	if (mlx->map->matrix[(int)next_y][(int)mlx->player->position.x] != 1)
 		mlx->player->position.y += mlx->player->direction.y
 			* mlx->player->move_speed;
 	ft_bzero(mlx->image->address, (WIDTH * HEIGHT * 4));

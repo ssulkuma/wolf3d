@@ -32,11 +32,11 @@ static int	dda_algorithm(t_data *data, t_ray *ray, t_object *object)
 	if (ray->map_x < 0 || ray->map_x >= data->map->width
 		|| ray->map_y < 0 || ray->map_y >= data->map->height)
 		return (-1);
-	if (data->map->matrix[ray->map_x][ray->map_y] == 2
-		|| data->map->matrix[ray->map_x][ray->map_y] == 3
-		|| data->map->matrix[ray->map_x][ray->map_y] == 4)
+	if (data->map->matrix[ray->map_y][ray->map_x] == 2
+		|| data->map->matrix[ray->map_y][ray->map_x] == 3
+		|| data->map->matrix[ray->map_y][ray->map_x] == 4)
 	{
-		object->texture = data->map->matrix[ray->map_x][ray->map_y] + 4;
+		object->texture = data->map->matrix[ray->map_y][ray->map_x] + 4;
 		return (1);
 	}
 	return (0);
@@ -84,6 +84,7 @@ static void	draw_objects(t_data *data, int x, t_object *object, t_ray *ray)
 	double		tex_y;
 	double		tex_x;
 
+	(void)ray;
 	step = 1.0 * TEX_HEIGHT / object->height;
 	tex_y = 0;
 	tex_x = (x - object->start_x) * step;

@@ -26,6 +26,7 @@
 # define THREADS 10
 # define ANIMATION_DURATION 50
 # define PI 3.141592654
+# define MAX_DEPTH 10000
 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
