@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <stdio.h>
 
 /*The digital differential analysis algorithm to calculate if there's a hit
  * to an  object in grid. Checks for every grid line on ray's way so the
