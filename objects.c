@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <stdio.h>
 
 /*The digital differential analysis algorithm to calculate if there's a hit
  * to an  object in grid. Checks for every grid line on ray's way so the
@@ -55,8 +56,8 @@ static void	object_calculations(t_data *data, t_ray *ray, t_object *object)
 	object->distance.y = object->position.y - data->player->position.y;
 	object->inverse = 1 / (data->player->cam_plane.x * data->player->direction.y
 			- data->player->direction.x * data->player->cam_plane.y);
-	object->transform.x = object->inverse * (data->player->direction.y
-			* object->distance.x - data->player->direction.x
+	object->transform.x = object->inverse * (-data->player->direction.y
+			* object->distance.x + data->player->direction.x
 			* object->distance.y);
 	object->transform.y = object->inverse * (-data->player->cam_plane.y
 			* object->distance.x + data->player->cam_plane.x
@@ -138,9 +139,9 @@ void	object_raycasting(t_data *data, int x)
 
 	cam_position = 2.0 * x / (double)WIDTH - 1.0;
 	ray.direction.x = data->player->direction.x
-		+ data->player->cam_plane.x * cam_position;
+		- data->player->cam_plane.x * cam_position;
 	ray.direction.y = data->player->direction.y
-		+ data->player->cam_plane.y * cam_position;
+		- data->player->cam_plane.y * cam_position;
 	ray.map_x = data->player->position.x;
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);

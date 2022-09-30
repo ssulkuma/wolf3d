@@ -16,10 +16,10 @@
 
 static void	utmost_rays(t_data *data, t_floor *floor)
 {
-	floor->left_ray.x = data->player->direction.x - data->player->cam_plane.x;
-	floor->left_ray.y = data->player->direction.y - data->player->cam_plane.y;
-	floor->right_ray.x = data->player->direction.x + data->player->cam_plane.x;
-	floor->right_ray.y = data->player->direction.y + data->player->cam_plane.y;
+	floor->left_ray.x = data->player->direction.x + data->player->cam_plane.x;
+	floor->left_ray.y = data->player->direction.y + data->player->cam_plane.y;
+	floor->right_ray.x = data->player->direction.x - data->player->cam_plane.x;
+	floor->right_ray.y = data->player->direction.y - data->player->cam_plane.y;
 }
 
 /*Calculates the scale the texture needs to be drawn in and loops through 

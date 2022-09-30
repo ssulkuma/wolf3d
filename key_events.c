@@ -12,10 +12,10 @@
 
 #include "wolf3d.h"
 
-/*Key event to rotate the view right. Both player direction and camera plane
+/*Key event to rotate the view left. Both player direction and camera plane
  * must be moved in union.*/
 
-static void	rotate_right(t_mlx *mlx)
+static void	rotate_left(t_mlx *mlx)
 {
 	double	previous_direction_x;
 	double	previous_cam_plane_x;
@@ -38,10 +38,10 @@ static void	rotate_right(t_mlx *mlx)
 	render(mlx);
 }
 
-/*Key event to rotate the view left. Both player direction and camera plane
+/*Key event to rotate the view right. Both player direction and camera plane
  * must be moved in union.*/
 
-static void	rotate_left(t_mlx *mlx)
+static void	rotate_right(t_mlx *mlx)
 {
 	double	previous_direction_x;
 	double	previous_cam_plane_x;

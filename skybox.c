@@ -51,7 +51,7 @@ void	*skybox(void *thread)
 	t_skybox	skybox;
 
 	data = (t_data *)thread;
-	skybox.result = atan2(data->player->direction.y, data->player->direction.x);
+	skybox.result = atan2(data->player->direction.x, data->player->direction.y);
 	if (skybox.result < 0)
 		skybox.result = skybox.result + 2.0 * PI;
 	skybox.result = skybox.result * 180.0 / PI;

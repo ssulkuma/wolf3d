@@ -145,9 +145,9 @@ void	draw_wall_raycasting(t_data *data, int x, t_image *texture)
 
 	cam_position = 2.0 * x / (double)WIDTH - 1.0;
 	ray.direction.x = data->player->direction.x
-		+ data->player->cam_plane.x * cam_position;
+		- data->player->cam_plane.x * cam_position;
 	ray.direction.y = data->player->direction.y
-		+ data->player->cam_plane.y * cam_position;
+		- data->player->cam_plane.y * cam_position;
 	ray.map_x = data->player->position.x;
 	ray.map_y = data->player->position.y;
 	ray_steps(data, &ray);
