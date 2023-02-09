@@ -5,9 +5,10 @@ The project is based on the famous game Wolfenstein3D.
 
 The project uses the 42 Network MinilibX (https://github.com/42Paris/minilibx-linux).
 
-To compile the program run
+To compile the program and run it
 ```
 make home
+./wolf3d
 ```
 Gameplay </br>
 Move — up and down arrowkeys </br>
