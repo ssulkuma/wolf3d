@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:20:18 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/13 14:29:24 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:45:31 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,13 @@ int	key_events(int keycode, t_mlx *mlx)
 		else
 			mlx->menu = 1;
 	}
-	if (keycode == ARROW_RIGHT)
+	if (keycode == ARROW_RIGHT || keycode == D_KEY)
 		rotate_right(mlx);
-	if (keycode == ARROW_LEFT)
+	if (keycode == ARROW_LEFT || keycode == A_KEY)
 		rotate_left(mlx);
-	if (keycode == ARROW_DOWN)
+	if (keycode == ARROW_DOWN || keycode == S_KEY)
 		move_backwards(mlx);
-	if (keycode == ARROW_UP)
+	if (keycode == ARROW_UP || keycode == W_KEY)
 		move_forward(mlx);
 	return (0);
 }

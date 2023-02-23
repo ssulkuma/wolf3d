@@ -6,10 +6,11 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:55:17 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/22 13:58:40 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:43:19 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef WOLF3D_H
+
+# ifndef WOLF3D_H
 # define WOLF3D_H
 
 # include "./libft/libft.h"
@@ -50,6 +51,10 @@
 # define ARROW_RIGHT 124
 # define ARROW_DOWN 125
 # define ARROW_UP 126
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
 # define MOUSE_LEFT 1
 
 typedef struct s_map

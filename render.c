@@ -6,7 +6,7 @@
 /*   By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:52:24 by ssulkuma          #+#    #+#             */
-/*   Updated: 2022/09/22 13:54:50 by ssulkuma         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:47:13 by ssulkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	render(t_mlx *mlx)
 	int		index;
 
 	menu[0] = "C O N T R O L S";
-	menu[1] = "[arrows] move";
+	menu[1] = "[arrows / WASD] move";
 	menu[2] = "[mouse] cast a spell";
 	menu[3] = "[M] close menu";
 	create_threads(mlx, &skybox);
