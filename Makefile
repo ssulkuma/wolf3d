@@ -6,7 +6,7 @@
 #    By: ssulkuma <ssulkuma@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 11:28:01 by ssulkuma          #+#    #+#              #
-#    Updated: 2022/09/22 14:14:26 by ssulkuma         ###   ########.fr        #
+#    Updated: 2023/02/23 10:50:20 by ssulkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,4 +61,4 @@ fclean: clean
 
 re: fclean all
 
-home: $(NAME)
+home: $(NAME) clean
